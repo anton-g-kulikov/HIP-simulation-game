@@ -184,6 +184,44 @@ every card was close to uninformative.
 | 12.7 | Restarting cannot destroy a finished session | Finished sessions are archived, not replaced |
 | 12.8 | Export is the primary action on the retrospective | Not "start another campaign" |
 
+## M4c — Outcome card legibility
+
+Requested after review of the review screen. Three problems: the causal factors
+ran together as prose with no visible state, capital changes were bare sentences
+while the game already has a bar idiom for exactly those values, and the market
+line floated outside any card with nothing to attach it to.
+
+| # | Case | Expectation |
+|---|---|---|
+| 13.1 | Each causal factor is its own row with an explicit state | `helped` or `held you back`, not run-on prose |
+| 13.2 | Luck is a row in the same list when it mattered | Absent when the roll landed as expected |
+| 13.3 | A decisive factor is marked as such | Distinguishable from a minor one |
+| 13.4 | A capital gain reports before and after, not just a sentence | So the change can be drawn |
+| 13.5 | A capital loss reports before above after | Direction is derivable without re-reading the copy |
+| 13.6 | Repeated effects on one dimension collapse into a single change | One bar per dimension, spanning the whole move |
+| 13.7 | A no-op effect produces no change row | Zero-amount effects do not draw an empty bar |
+| 13.8 | Non-capital changes (money, role, energy) stay as text | They are not 0–100 dimensions and have no bar |
+| 13.9 | The market line no longer floats outside a card on the review screen | — |
+| 13.10 | The market reads as standing context in the career snapshot | Where the player consults it while deciding |
+
+## M4d — Honest verbs and standing context
+
+| # | Case | Expectation |
+|---|---|---|
+| 14.1 | An application card's button says apply, not do | The player controls the attempt, not the result |
+| 14.2 | Every fixed-cost card names the effort it buys | No card falls back to a generic verb by accident |
+| 14.3 | A pipeline stage carries its own verb | "Interview", "Do the assignment" — not "Do this" |
+| 14.4 | Accepting an offer says accept | The one action whose result *is* certain |
+| 14.5 | No card promises an outcome | No button text asserts a result |
+| 14.6 | The engine reports what last month moved | Capital at this open versus the previous open |
+| 14.7 | Turn 1 reports no movement | Nothing has happened yet |
+| 14.8 | Movement survives a save round trip | It is campaign state, not view state |
+| 14.9 | Where you stand and what is in motion are open, at the top, on every turn | No collapse control |
+| 14.10 | The snapshot draws last month's movement on each bar | Same idiom as the outcome cards |
+
+The "did they open the pipeline view" metric is retired: both views are now
+always visible, so the question no longer has an answer worth recording.
+
 ## M6 — Balance harness
 
 | # | Case | Expectation |

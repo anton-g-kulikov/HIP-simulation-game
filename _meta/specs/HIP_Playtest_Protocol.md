@@ -73,7 +73,6 @@ Every session exports one JSON file, local only, no network:
       "cardsOffered": ["...", "..."],
       "cardsExpiredUnused": ["..."],
       "screenDwellMs": { "review": 21000, "allocate": 61000, "commit": 12000 },
-      "snapshotExpanded": true, "pipelineViewOpened": false,
       "costInflationSeen": [ { "category": "current_job", "from": 4, "to": 6 } ],
       "probe": { "difficulty": 4, "awareness": "roughly" }
     }
@@ -112,7 +111,6 @@ The export holds **every campaign played in that browser session**, not only the
 | Median unused Energy per turn | 0.5–2.0 |
 | Turns with zero allocation | < 5% |
 | Rules questions asked during play | ≤ 3 per participant |
-| Pipeline view opened at least once | ≥ 5 of 10 |
 
 Median unused Energy is a better tension signal than it looks. Zero means players are spending reflexively rather than choosing; high means the cards on offer are not compelling. A small persistent remainder is what deliberate play looks like.
 

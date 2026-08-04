@@ -22,7 +22,7 @@ All eight are complete. The prototype is playable end to end and the balance inv
 | M6 | Balance harness and tuning | ✅ done | 10/10 invariants hold over 1,000 seeds × 15 policies |
 | M7 | Playtest instrumentation | ✅ done | Session exports one JSON file with every allocation, outcome, dwell time and probe |
 
-**184 tests passing.** Suite runs in about 1.5 seconds.
+**216 tests passing.** Suite runs in about 1.5 seconds.
 
 ---
 
@@ -81,6 +81,55 @@ the test suite by construction.
 Signal calibration is now covered by `test/engine/signals.test.ts`, which fails
 if any band becomes unreachable or swamps the others — the class of bug that
 would otherwise only surface in front of a participant.
+
+---
+
+## Review-screen revision
+
+Requested after reading the outcome cards. Three changes, all in [HIP_UX_Spec.md](specs/HIP_UX_Spec.md) §1.1:
+
+1. **Causal factors are rows, not prose.** One row per factor with an explicit
+   `helped` / `held you back` state, colour-coded, luck included as a row when it
+   mattered. The old run-on sentence made three separate claims read as one.
+2. **Capital changes are drawn.** Each move gets a bar in the same idiom as the
+   career snapshot: quiet where the value already sat, coloured for this month's
+   move. Measuring first mattered here — an initial 5px floor on the moved
+   segment swallowed the median change (1.3 points ≈ 4px) and made every bar
+   look identical, which showed direction and destroyed magnitude.
+3. **The market line has a home.** It floated outside every card at the bottom of
+   the review screen, and duplicated the event card that had just said hiring
+   froze. It is standing context for the next decision, so it moved into the
+   career snapshot beside runway and role.
+
+The engine now reports capital moves structurally (`OutcomeCard.capitalChanges`,
+with before and after) rather than only as sentences, with repeated effects on
+one dimension collapsed into a single move.
+
+---
+
+## Standing-context revision
+
+Two further changes after review, both in [HIP_UX_Spec.md](specs/HIP_UX_Spec.md) §1.2:
+
+1. **Buttons name the effort, not the result.** A role card said "Do this"; it
+   now says "Apply", because applying is what the Energy buys and the outcome is
+   the simulation's business. Every template and every hiring stage carries its
+   own verb in content, and a test fails the build if a verb asserts an outcome.
+2. **Where you stand and what you have going are open, at the top, every round.**
+   They were collapsed below the fold. Compounding is the subject of the game,
+   and a player who has to go looking for their own accumulation will not watch
+   it accumulate. Each capital bar now draws what the last month moved, from two
+   reference points held in campaign state (`capitalAtOpen`,
+   `capitalAtPreviousOpen`) so it survives a save.
+
+Measuring mattered again on the second one. Drawing every move put a tick on all
+seven bars each idle month and produced a six-clause sentence of bad news for
+doing nothing — capability drifts 0.1 a month from disuse. Movement is now drawn
+above a quarter point and described in prose above a full point, so a quiet month
+reads as quiet.
+
+The "did they open the pipeline view" playtest metric is retired: both views are
+always visible, so the question no longer has an answer.
 
 ---
 
