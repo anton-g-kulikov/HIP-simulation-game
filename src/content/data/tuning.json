@@ -55,7 +55,8 @@
               }
             ]
           }
-        }
+        },
+        "verb": "Take the screen"
       },
       {
         "stage": "early_interview",
@@ -113,7 +114,8 @@
               }
             ]
           }
-        }
+        },
+        "verb": "Interview"
       },
       {
         "stage": "advanced_interview",
@@ -176,7 +178,8 @@
               }
             ]
           }
-        }
+        },
+        "verb": "Interview"
       },
       {
         "stage": "assignment",
@@ -229,9 +232,11 @@
               }
             ]
           }
-        }
+        },
+        "verb": "Do the assignment"
       }
-    ]
+    ],
+    "acceptVerb": "Accept the offer"
   },
   "employer": {
     "recognitionThreshold": 100,

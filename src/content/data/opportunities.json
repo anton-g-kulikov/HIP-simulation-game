@@ -108,7 +108,8 @@
     ],
     "tags": [
       "prestige"
-    ]
+    ],
+    "actionVerb": "Apply"
   },
   {
     "id": "role_senior_eng_climate_startup",
@@ -231,7 +232,8 @@
     ],
     "tags": [
       "mission"
-    ]
+    ],
+    "actionVerb": "Apply"
   },
   {
     "id": "role_tech_lead_scaleup",
@@ -352,7 +354,8 @@
     ],
     "tags": [
       "leadership"
-    ]
+    ],
+    "actionVerb": "Apply"
   },
   {
     "id": "role_ml_infra_ai_lab",
@@ -482,7 +485,8 @@
     "tags": [
       "prestige",
       "frontier"
-    ]
+    ],
+    "actionVerb": "Apply"
   },
   {
     "id": "role_eng_manager_internal",
@@ -613,7 +617,8 @@
     "tags": [
       "leadership",
       "internal"
-    ]
+    ],
+    "actionVerb": "Put your name in"
   },
   {
     "id": "engage_contract_advisory",
@@ -745,7 +750,8 @@
     ],
     "tags": [
       "income"
-    ]
+    ],
+    "actionVerb": "Take it on"
   },
   {
     "id": "cj_deliver_core_roadmap",
@@ -857,7 +863,8 @@
     "signals": [
       "reversible"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Put the time in"
   },
   {
     "id": "cj_stretch_visible_project",
@@ -987,7 +994,8 @@
     "signals": [
       "high_uncertainty"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Take it on"
   },
   {
     "id": "cj_mentor_juniors",
@@ -1113,7 +1121,8 @@
     "signals": [
       "slow_payoff"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Put the time in"
   },
   {
     "id": "cj_fix_the_thing_nobody_owns",
@@ -1234,7 +1243,8 @@
     ],
     "tags": [
       "invisible_work"
-    ]
+    ],
+    "actionVerb": "Put the time in"
   },
   {
     "id": "cj_push_for_promotion",
@@ -1371,7 +1381,8 @@
     "signals": [
       "reversible"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Make the case"
   },
   {
     "id": "learn_distributed_systems_depth",
@@ -1470,7 +1481,8 @@
     "signals": [
       "strong_learning"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Study it"
   },
   {
     "id": "learn_ml_fundamentals",
@@ -1596,7 +1608,8 @@
       "strong_learning",
       "slow_payoff"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Study it"
   },
   {
     "id": "learn_writing_and_comms",
@@ -1701,7 +1714,8 @@
       "strong_learning",
       "slow_payoff"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Work at it"
   },
   {
     "id": "learn_apply_at_work",
@@ -1825,7 +1839,8 @@
     "tags": [
       "applies_learning"
     ],
-    "signals": []
+    "signals": [],
+    "actionVerb": "Put it to use"
   },
   {
     "id": "proj_open_source_tool",
@@ -1946,7 +1961,8 @@
     "signals": [
       "high_uncertainty"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Work on it"
   },
   {
     "id": "proj_technical_writing_series",
@@ -2068,7 +2084,8 @@
     "signals": [
       "slow_payoff"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Work on it"
   },
   {
     "id": "proj_prototype_for_nonprofit",
@@ -2203,7 +2220,8 @@
     ],
     "tags": [
       "mission"
-    ]
+    ],
+    "actionVerb": "Work on it"
   },
   {
     "id": "proj_launch",
@@ -2350,7 +2368,8 @@
     ],
     "tags": [
       "launches_project"
-    ]
+    ],
+    "actionVerb": "Put it out there"
   },
   {
     "id": "net_reconnect_dormant_ties",
@@ -2446,7 +2465,8 @@
     "signals": [
       "reversible"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Reach out"
   },
   {
     "id": "net_conference_attendance",
@@ -2556,7 +2576,8 @@
     "signals": [
       "high_uncertainty"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Go"
   },
   {
     "id": "net_coffee_with_operators",
@@ -2663,7 +2684,8 @@
     "signals": [
       "slow_payoff"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Set them up"
   },
   {
     "id": "pub_write_technical_post",
@@ -2792,7 +2814,8 @@
       }
     },
     "signals": [],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Write it"
   },
   {
     "id": "pub_speak_at_meetup",
@@ -2929,6 +2952,7 @@
     "signals": [
       "high_uncertainty"
     ],
-    "tags": []
+    "tags": [],
+    "actionVerb": "Give the talk"
   }
 ]

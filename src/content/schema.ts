@@ -174,6 +174,12 @@ export const opportunitySchema = z
       })
       .optional(),
 
+    /**
+     * What the button offers to do. It must name the effort the player is
+     * buying, never the result: applying for a role is not getting it.
+     */
+    actionVerb: z.string().min(1).default('Do this'),
+
     signals: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
   })
@@ -386,6 +392,8 @@ const stageOutcomeSchema = z.object({
 const hiringStageSchema = z.object({
   stage: z.string().min(1),
   label: z.string().min(1),
+  /** The effort this stage asks for, for the button. */
+  verb: z.string().min(1),
   cost: z.number().int().positive(),
   difficulty: z.number().min(0).max(1),
   outcomes: z.object({
@@ -398,6 +406,8 @@ const hiringStageSchema = z.object({
 
 export const gameTuningSchema = z.object({
   hiring: z.object({
+    /** Taking an offer is the one hiring action whose result is certain. */
+    acceptVerb: z.string().min(1),
     maxConcurrent: z.number().int().positive(),
     lapseAfterTurns: z.number().int().positive(),
     referralNetworkFactor: z.number().min(0).max(1),

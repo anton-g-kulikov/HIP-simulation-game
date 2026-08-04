@@ -105,6 +105,48 @@ describe('authored content — loads and holds its structural rules', () => {
   })
 })
 
+describe('authored content — action verbs', () => {
+  // Test intent: test/test-documentation.md, M4d (14.1–14.5)
+
+  it('14.1 offers to apply for a role, not to do it', () => {
+    for (const template of content.opportunities) {
+      if (template.kind !== 'hiring') continue
+      expect(template.actionVerb.toLowerCase()).toMatch(/apply|put your name in/)
+    }
+  })
+
+  it('14.2 gives every template a verb of its own', () => {
+    const generic = content.opportunities.filter((o) => o.actionVerb === 'Do this')
+    expect(generic.map((o) => o.id)).toEqual([])
+  })
+
+  it('14.3 gives every hiring stage its own verb', () => {
+    for (const stage of content.tuning.hiring.stages) {
+      expect(stage.verb.length).toBeGreaterThan(0)
+      expect(stage.verb).not.toBe('Do this')
+    }
+  })
+
+  it('14.4 names accepting an offer as accepting', () => {
+    expect(content.tuning.hiring.acceptVerb.toLowerCase()).toContain('accept')
+  })
+
+  it('14.5 never promises an outcome in a verb', () => {
+    // The player controls the attempt. A verb that asserts the result would be
+    // lying about what the energy buys.
+    // Targets asserting the outcome of the check — "Land the job" — rather than
+    // any use of a common verb: "Reach out" and "Take it on" name the effort.
+    const promises = /\b(win|land|secure|earn|achieve|succeed)\b|\bget (the|a|an)\b/i
+    const verbs = [
+      ...content.opportunities.map((o) => o.actionVerb),
+      ...content.tuning.hiring.stages.map((s) => s.verb),
+    ]
+    for (const verb of verbs) {
+      expect(verb, `"${verb}" promises a result`).not.toMatch(promises)
+    }
+  })
+})
+
 describe('authored content — plays', () => {
   function playThrough(seed: number, pick: (state: CampaignState) => Record<string, number>) {
     let state = openTurn(createCampaign(content, PROFILE, seed), content)
