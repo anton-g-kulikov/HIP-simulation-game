@@ -1,23 +1,58 @@
-import { describeAllFit, runwayMonths, summarisePipeline } from '@engine/index'
+import {
+  capitalMovement,
+  notableMovement,
+  describeAllFit,
+  describeMarket,
+  runwayMonths,
+  summarisePipeline,
+  CAPITAL_LABELS,
+} from '@engine/index'
+import type { CapitalMovement, CapitalPath } from '@engine/types'
 import { useStore } from '../store'
-import { noteSnapshotExpanded, notePipelineViewOpened } from '@telemetry/log'
 
 /**
  * Bars are unlabelled by value and deliberately imprecise: the player should
  * reason about direction, not optimise a number (HIP_UX_Spec.md §4). Money and
  * time are the only things shown numerically.
+ *
+ * The moved segment shows what the last month did, in the same idiom as the
+ * outcome cards: quiet where the value already sat, coloured for the move.
  */
-function Bar({ label, value }: { label: string; value: number }) {
+function Row({
+  label,
+  value,
+  movement,
+}: {
+  label: string
+  value: number
+  movement?: CapitalMovement
+}) {
+  const steady = movement ? Math.min(movement.before, movement.after) : value
+  const moved = movement ? Math.abs(movement.after - movement.before) : 0
+  const gained = movement ? movement.after > movement.before : false
+
   return (
     <div className="snapshot-row">
       <span className="snapshot-label">{label}</span>
       <div className="bar">
-        <div className="bar-fill" style={{ width: `${Math.max(2, Math.min(100, value))}%` }} />
+        <div className="bar-fill" style={{ width: `${Math.max(2, Math.min(100, steady))}%` }} />
+        {movement && (
+          <div
+            className={`bar-moved ${gained ? 'up' : 'down'}`}
+            style={{ width: `${Math.max(0, Math.min(100, moved))}%` }}
+          />
+        )}
       </div>
     </div>
   )
 }
 
+/**
+ * Open, at the top, every round — not behind a toggle.
+ *
+ * This is the compounding the game is about. A player who has to go looking for
+ * it will not watch it accumulate, and watching it accumulate is the lesson.
+ */
 export function CareerSnapshot() {
   const state = useStore((s) => s.state)
   const content = useStore((s) => s.content)
@@ -25,54 +60,73 @@ export function CareerSnapshot() {
   const { capital, finance, role } = state.player
   const fit = describeAllFit(state.player.hiddenFit, state.player.fitObservations)
   const openPipelines = state.pipelines.filter((p) => !p.closed)
+  // Standing context rather than an outcome: it bears on what to attempt next,
+  // which is a decision made here.
+  const market = describeMarket(state.market)
+
+  const movement = capitalMovement(state)
+  const notable = notableMovement(state)
+  const movementFor = (path: CapitalPath) => movement.find((m) => m.path === path)
+
+  const rows: { path: CapitalPath; value: number }[] = [
+    { path: 'capability.technical', value: capital.capability.technical },
+    { path: 'capability.execution', value: capital.capability.execution },
+    { path: 'capability.communication', value: capital.capability.communication },
+    { path: 'capability.leadership', value: capital.capability.leadership },
+    { path: 'evidence', value: capital.evidence },
+    { path: 'reputation', value: capital.reputation },
+    { path: 'network', value: capital.network },
+  ]
 
   return (
     <>
-      <details onToggle={(e) => e.currentTarget.open && noteSnapshotExpanded()}>
-        <summary>Where you stand</summary>
+      <h2 className="section">Where you stand</h2>
+      <div className="card">
+        {rows.map((row) => (
+          <Row
+            key={row.path}
+            label={CAPITAL_LABELS[row.path]}
+            value={row.value}
+            movement={movementFor(row.path)}
+          />
+        ))}
 
-        <div style={{ marginTop: 12 }}>
-          <Bar label="Technical" value={capital.capability.technical} />
-          <Bar label="Execution" value={capital.capability.execution} />
-          <Bar label="Communication" value={capital.capability.communication} />
-          <Bar label="Leading" value={capital.capability.leadership} />
-          <Bar label="Evidence" value={capital.evidence} />
-          <Bar label="Reputation" value={capital.reputation} />
-          <Bar label="Network" value={capital.network} />
-
-          <p className="muted" style={{ fontSize: 14, marginTop: 12 }}>
-            {role.title}, {role.org}.<br />
-            {Math.round(finance.monthlyComp).toLocaleString('en-US')} a month ·{' '}
-            {runwayMonths(finance).toFixed(1)} months of runway.
+        {notable.length > 0 && (
+          <p className="muted snapshot-note">
+            Last month: {notable.map((m) => m.phrase.toLowerCase()).join(', ')}.
           </p>
+        )}
 
-          {fit.length > 0 && (
-            <p className="muted" style={{ fontSize: 14 }}>
-              {fit.map((entry) => entry.phrase).join(' ')}
-            </p>
-          )}
-        </div>
-      </details>
+        <p className="muted snapshot-note">
+          {role.title}, {role.org}.<br />
+          {Math.round(finance.monthlyComp).toLocaleString('en-US')} a month ·{' '}
+          {runwayMonths(finance).toFixed(1)} months of runway.
+        </p>
 
-      <details onToggle={(e) => e.currentTarget.open && notePipelineViewOpened()}>
-        <summary>What is in motion</summary>
-        <div style={{ marginTop: 12 }}>
-          {openPipelines.map((pipeline) => (
-            <p key={pipeline.id} className="muted" style={{ fontSize: 14, margin: '0 0 8px' }}>
-              <strong style={{ color: 'var(--ink)' }}>{pipeline.title}</strong>
-              <br />
-              {summarisePipeline(pipeline, content)}
-            </p>
-          ))}
-          {state.pending.length > 0 && (
-            <p className="muted" style={{ fontSize: 14 }}>
-              {state.pending.length === 1
-                ? 'One thing is still waiting to come back.'
-                : `${state.pending.length} things are still waiting to come back.`}
-            </p>
-          )}
-        </div>
-      </details>
+        {fit.length > 0 && (
+          <p className="muted snapshot-note">{fit.map((entry) => entry.phrase).join(' ')}</p>
+        )}
+
+        {market && <p className="muted snapshot-note">{market}</p>}
+      </div>
+
+      <h2 className="section">What you have going</h2>
+      <div className="card">
+        {openPipelines.map((pipeline) => (
+          <p key={pipeline.id} className="pipeline-line">
+            <strong>{pipeline.title}</strong>
+            <br />
+            <span className="muted">{summarisePipeline(pipeline, content)}</span>
+          </p>
+        ))}
+        <p className="muted snapshot-note" style={{ marginBottom: 0 }}>
+          {state.pending.length === 0
+            ? 'Nothing is waiting to come back.'
+            : state.pending.length === 1
+              ? 'One thing is still waiting to come back.'
+              : `${state.pending.length} things are still waiting to come back.`}
+        </p>
+      </div>
     </>
   )
 }

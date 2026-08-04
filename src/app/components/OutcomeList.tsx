@@ -1,4 +1,4 @@
-import type { OutcomeCard } from '@engine/types'
+import type { CapitalChange, Explanation, OutcomeCard } from '@engine/types'
 
 const BAND_LABEL: Record<OutcomeCard['band'], string> = {
   strong: 'Better than expected',
@@ -17,6 +17,68 @@ function monthsAgo(turns: number): string {
   if (turns <= 0) return 'this month'
   if (turns === 1) return 'last month'
   return `${turns} months ago`
+}
+
+type Factor = {
+  label: string
+  helped: boolean
+  state: string
+  decisive: boolean
+}
+
+/**
+ * Causal factors as rows with an explicit state, rather than run-on prose.
+ *
+ * As a sentence these read badly and scan worse — "How well this suits you
+ * worked against you" is three clauses to say one thing. Each factor is one
+ * claim with one direction, so it should look like one.
+ */
+function factorsOf(explanation: Explanation): Factor[] {
+  const factors: Factor[] = explanation.contributors.map((c) => ({
+    label: c.label,
+    helped: c.direction === 'helped',
+    state: c.direction === 'helped' ? 'helped' : 'held you back',
+    decisive: c.weight === 'decisive',
+  }))
+
+  if (explanation.luck !== 'as expected') {
+    factors.push({
+      label: 'Luck',
+      helped: explanation.luck === 'ran your way',
+      state: explanation.luck,
+      decisive: false,
+    })
+  }
+
+  return factors
+}
+
+/**
+ * One bar per capital move, drawn the way the career snapshot draws the same
+ * values, so a change can be seen rather than read.
+ *
+ * The steady part of the bar is whichever end is lower; the moved part sits on
+ * the end and is coloured by direction. A gain therefore grows to the right and
+ * a loss shows what came off. Small moves get a floor width so a one-point
+ * change is still visible.
+ */
+function ChangeBar({ change }: { change: CapitalChange }) {
+  const gained = change.after > change.before
+  const steady = Math.min(change.before, change.after)
+  const moved = Math.abs(change.after - change.before)
+
+  return (
+    <div className="change">
+      <div className="change-phrase">{change.phrase || change.label}</div>
+      <div className="change-bar" role="img" aria-label={`${change.label} ${gained ? 'up' : 'down'}`}>
+        <div className="change-steady" style={{ width: `${Math.max(0, Math.min(100, steady))}%` }} />
+        <div
+          className={`change-moved ${gained ? 'up' : 'down'}`}
+          style={{ width: `${Math.max(0, Math.min(100, moved))}%` }}
+        />
+      </div>
+    </div>
+  )
 }
 
 /**
@@ -48,44 +110,59 @@ export function OutcomeList({
 
   return (
     <>
-      {outcomes.map((outcome) => (
-        <div className="card" key={outcome.id}>
-          {/* Only results get a success band. An event is not something the
-              player earned, and labelling it "Close" would be nonsense. */}
-          <span className={`band ${outcome.kind === 'result' ? outcome.band : outcome.kind}`}>
-            {outcome.kind === 'result' ? BAND_LABEL[outcome.band] : KIND_LABEL[outcome.kind]}
-          </span>
-          <div className="card-title">{outcome.headline}</div>
+      {outcomes.map((outcome) => {
+        const factors = factorsOf(outcome.explanation)
 
-          {outcome.sourceTitle && outcome.turnsAgo > 0 && (
-            <div className="outcome-source">
-              From: {outcome.sourceTitle}, {monthsAgo(outcome.turnsAgo)}.
-            </div>
-          )}
+        return (
+          <div className="card" key={outcome.id}>
+            {/* Only results get a success band. An event is not something the
+                player earned, and labelling it "Close" would be nonsense. */}
+            <span className={`band ${outcome.kind === 'result' ? outcome.band : outcome.kind}`}>
+              {outcome.kind === 'result' ? BAND_LABEL[outcome.band] : KIND_LABEL[outcome.kind]}
+            </span>
+            <div className="card-title">{outcome.headline}</div>
 
-          {outcome.explanation.contributors.length > 0 && (
-            <div className="outcome-why">
-              {outcome.explanation.contributors.map((c) => (
-                <span key={c.label}>
-                  {c.label} {c.direction === 'helped' ? 'helped' : 'worked against you'}
-                  {c.weight === 'decisive' ? ', decisively' : ''}.{' '}
-                </span>
-              ))}
-              {outcome.explanation.luck !== 'as expected' && (
-                <span>Luck {outcome.explanation.luck}.</span>
-              )}
-            </div>
-          )}
+            {outcome.sourceTitle && outcome.turnsAgo > 0 && (
+              <div className="outcome-source">
+                From: {outcome.sourceTitle}, {monthsAgo(outcome.turnsAgo)}.
+              </div>
+            )}
 
-          {outcome.changes.length > 0 && (
-            <ul className="changes">
-              {outcome.changes.map((change) => (
-                <li key={change}>{change}</li>
-              ))}
-            </ul>
-          )}
-        </div>
-      ))}
+            {factors.length > 0 && (
+              <ul className="factors">
+                {factors.map((factor) => (
+                  <li
+                    key={factor.label}
+                    className={`factor ${factor.helped ? 'helped' : 'hurt'}${factor.decisive ? ' decisive' : ''}`}
+                  >
+                    <span className="factor-label">{factor.label}</span>
+                    <span className="factor-state">
+                      {factor.state}
+                      {factor.decisive ? ', decisively' : ''}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {outcome.capitalChanges.length > 0 && (
+              <div className="changes-bars">
+                {outcome.capitalChanges.map((change) => (
+                  <ChangeBar key={change.path} change={change} />
+                ))}
+              </div>
+            )}
+
+            {outcome.changes.length > 0 && (
+              <ul className="changes">
+                {outcome.changes.map((change) => (
+                  <li key={change}>{change}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )
+      })}
     </>
   )
 }

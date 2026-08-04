@@ -20,9 +20,13 @@ export function AllocateScreen() {
         </div>
       )}
 
+      {/* Standing context first: what a month did to you, and what is still
+          running, are the inputs to the decision below — not a footnote to it. */}
+      <CareerSnapshot />
+
       {commitments.length > 0 && (
         <>
-          <h2 className="section">Already in motion</h2>
+          <h2 className="section">Needs a decision</h2>
           {commitments.map((view) => (
             <OfferCard key={view.offer.id} view={view} />
           ))}
@@ -33,8 +37,6 @@ export function AllocateScreen() {
       {fresh.map((view) => (
         <OfferCard key={view.offer.id} view={view} />
       ))}
-
-      <CareerSnapshot />
 
       <div className="footer-action">
         <div className="footer-inner">

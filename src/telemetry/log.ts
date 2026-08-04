@@ -19,8 +19,6 @@ export type TurnTelemetry = {
   cardsOffered: string[]
   cardsExpiredUnused: string[]
   screenDwellMs: Record<string, number>
-  snapshotExpanded: boolean
-  pipelineViewOpened: boolean
   costInflationSeen: { category: string; from: number; to: number }[]
   probe?: { difficulty: number; awareness: string }
 }
@@ -79,8 +77,6 @@ export function beginTurn(state: CampaignState, energyAvailable: number, now: nu
     cardsOffered: state.offers.map((o) => o.id),
     cardsExpiredUnused: [],
     screenDwellMs: {},
-    snapshotExpanded: false,
-    pipelineViewOpened: false,
     costInflationSeen: [],
   }
   for (const outcome of state.currentOutcomes) {
@@ -100,14 +96,6 @@ export function enterScreen(name: string, now: number): void {
   }
   currentScreen = name
   screenEnteredAt = now
-}
-
-export function noteSnapshotExpanded(): void {
-  if (currentTurn) currentTurn.snapshotExpanded = true
-}
-
-export function notePipelineViewOpened(): void {
-  if (currentTurn) currentTurn.pipelineViewOpened = true
 }
 
 export function noteCostInflation(category: string, from: number, to: number): void {

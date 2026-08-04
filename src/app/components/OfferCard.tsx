@@ -86,7 +86,7 @@ export function OfferCard({ view }: { view: OfferView }) {
             onClick={() => setEffort(offer.id, effort > 0 ? 0 : offer.minEnergy)}
             disabled={effort === 0 && !canAfford(view, offer.minEnergy)}
           >
-            {effort > 0 ? 'Chosen' : `Do this — ${view.cost} ⚡`}
+            {effort > 0 ? 'Chosen' : `${view.actionVerb} — ${view.cost} ⚡`}
           </button>
         )}
       </div>

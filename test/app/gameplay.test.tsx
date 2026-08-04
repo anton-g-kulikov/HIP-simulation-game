@@ -189,6 +189,138 @@ describe('playing a turn', () => {
   })
 })
 
+describe('the outcome card', () => {
+  // Test intent: test/test-documentation.md, M4c (13.1–13.3, 13.9, 13.10)
+  const card = (over: Partial<import('@engine/types').OutcomeCard> = {}) => ({
+    id: 'o1',
+    kind: 'result' as const,
+    sourceTemplateId: 'x',
+    sourceTitle: 'Get better at writing things down',
+    sourceTurn: 1,
+    turnsAgo: 3,
+    band: 'failure' as const,
+    headline: 'You wrote a lot of words nobody needed.',
+    explanation: {
+      contributors: [
+        { label: 'The effort you put in', direction: 'hurt' as const, weight: 'notable' as const },
+        { label: 'Your track record', direction: 'helped' as const, weight: 'decisive' as const },
+      ],
+      luck: 'ran against you' as const,
+    },
+    capitalChanges: [],
+    changes: [],
+    ...over,
+  })
+
+  function renderCard(over = {}) {
+    const state = openTurn(createCampaign(content, 'swe_bigtech_28', 5), content)
+    useStore.setState({
+      state: { ...state, currentOutcomes: [card(over)] },
+      screen: 'review',
+    })
+    render(<App />)
+  }
+
+  it('13.1 gives each causal factor its own row with an explicit state', () => {
+    renderCard()
+
+    const rows = document.querySelectorAll('.factor')
+    // two contributors plus luck
+    expect(rows).toHaveLength(3)
+
+    const helped = document.querySelectorAll('.factor.helped')
+    const hurt = document.querySelectorAll('.factor.hurt')
+    expect(helped).toHaveLength(1)
+    expect(hurt).toHaveLength(2)
+
+    expect(document.body.textContent).toContain('held you back')
+    expect(document.body.textContent).toContain('helped')
+    // The old run-on phrasing is gone.
+    expect(document.body.textContent).not.toContain('worked against you.')
+  })
+
+  it('13.2 omits luck when the roll landed as expected', () => {
+    renderCard({
+      explanation: {
+        contributors: [
+          { label: 'Your track record', direction: 'helped' as const, weight: 'minor' as const },
+        ],
+        luck: 'as expected' as const,
+      },
+    })
+    expect(document.querySelectorAll('.factor')).toHaveLength(1)
+    expect(document.body.textContent).not.toContain('Luck')
+  })
+
+  it('13.3 marks a decisive factor differently from a minor one', () => {
+    renderCard()
+    expect(document.querySelectorAll('.factor.decisive')).toHaveLength(1)
+    expect(document.body.textContent).toContain('decisively')
+  })
+
+  it('13.4b draws a bar for a capital gain, sized by the move', () => {
+    renderCard({
+      capitalChanges: [
+        {
+          path: 'evidence' as const,
+          label: 'Record of results',
+          phrase: 'Your record of results got stronger.',
+          before: 45,
+          after: 51,
+        },
+      ],
+    })
+
+    expect(document.querySelectorAll('.change-bar')).toHaveLength(1)
+    const moved = document.querySelector('.change-moved') as HTMLElement
+    expect(moved.classList.contains('up')).toBe(true)
+    expect(moved.style.width).toBe('6%')
+
+    const steady = document.querySelector('.change-steady') as HTMLElement
+    expect(steady.style.width).toBe('45%')
+
+    expect(document.body.textContent).toContain('Your record of results got stronger.')
+  })
+
+  it('13.5b draws a loss in the other direction', () => {
+    renderCard({
+      capitalChanges: [
+        {
+          path: 'reputation' as const,
+          label: 'Reputation',
+          phrase: 'You dropped out of view a little.',
+          before: 30,
+          after: 24,
+        },
+      ],
+    })
+
+    const moved = document.querySelector('.change-moved') as HTMLElement
+    expect(moved.classList.contains('down')).toBe(true)
+    // The steady part is the lower end, so the lost slice sits on the end.
+    const steady = document.querySelector('.change-steady') as HTMLElement
+    expect(steady.style.width).toBe('24%')
+  })
+
+  it('13.8b keeps money as text, with no bar', () => {
+    renderCard({ changes: ['Your savings are now 75,500.'] })
+    expect(document.querySelectorAll('.change-bar')).toHaveLength(0)
+    expect(document.body.textContent).toContain('Your savings are now 75,500.')
+  })
+
+  it('13.9 does not float the market line outside a card on the review screen', () => {
+    renderCard()
+    const cards = [...document.querySelectorAll('.card')]
+    const marketText = /hiring has (cooled|picked up|frozen)/i
+    // Any market wording on this screen must live inside a card.
+    const loose = [...document.querySelectorAll('.app > p')].some((el) =>
+      marketText.test(el.textContent ?? ''),
+    )
+    expect(loose).toBe(false)
+    expect(cards.length).toBeGreaterThan(0)
+  })
+})
+
 describe('a month where nothing lands', () => {
   it('9.10 still shows the review screen when something is in flight', () => {
     // HIP_UX_Spec.md §1.1: a turn that resolves nothing says so. Skipping
@@ -340,6 +472,84 @@ describe('day gate', () => {
 })
 
 describe('layout', () => {
+  it('13.10 shows the market as standing context in the career snapshot', () => {
+    skipIntro()
+    const state = openTurn(createCampaign(content, 'swe_bigtech_28', 5), content)
+    // A clearly cooled market, so the phrase is deterministic.
+    useStore.setState({ state: { ...state, market: { hiring: -0.12 } }, screen: 'allocate' })
+    render(<App />)
+
+    const cards = [...document.querySelectorAll('.card')]
+    expect(cards.some((c) => /hiring has cooled/i.test(c.textContent ?? ''))).toBe(true)
+  })
+
+  it('14.9 shows where you stand and what is going, open, above the choices', () => {
+    skipIntro()
+    render(<App />)
+
+    // No collapse control anywhere on the screen.
+    expect(document.querySelectorAll('details')).toHaveLength(0)
+
+    const headings = [...document.querySelectorAll('h2.section')].map((h) => h.textContent)
+    expect(headings[0]).toMatch(/where you stand/i)
+    expect(headings[1]).toMatch(/what you have going/i)
+    // The choices come after the context, not before it.
+    expect(headings.findIndex((h) => /this month/i.test(h ?? ''))).toBeGreaterThan(1)
+
+    // The bars are rendered, not hidden behind a toggle.
+    expect(document.querySelectorAll('.bar-fill').length).toBeGreaterThan(0)
+  })
+
+  it('14.10 draws last month’s movement on the snapshot bars', () => {
+    skipIntro()
+    let state = openTurn(createCampaign(content, 'swe_bigtech_28', 11), content)
+    state = openTurn(commitAllocation(state, content, {}), content)
+
+    useStore.setState({ state, screen: 'allocate' })
+    render(<App />)
+
+    // Reputation and network erode enough in a month to be worth drawing.
+    expect([...document.querySelectorAll('.bar-moved')].length).toBeGreaterThan(0)
+  })
+
+  it('14.10c says nothing in prose about a month of ordinary erosion', () => {
+    // The bars carry it. A paragraph of bad news for doing nothing would
+    // misread a quiet month as a bad one.
+    skipIntro()
+    let state = openTurn(createCampaign(content, 'swe_bigtech_28', 11), content)
+    state = openTurn(commitAllocation(state, content, {}), content)
+
+    useStore.setState({ state, screen: 'allocate' })
+    render(<App />)
+
+    expect(document.body.textContent).not.toMatch(/last month:/i)
+  })
+
+  it('14.10d does put a real move into words', () => {
+    skipIntro()
+    const state = openTurn(createCampaign(content, 'swe_bigtech_28', 11), content)
+    const lifted = {
+      ...state,
+      capitalAtPreviousOpen: { ...state.capitalAtOpen, evidence: state.capitalAtOpen.evidence - 6 },
+    }
+
+    useStore.setState({ state: lifted, screen: 'allocate' })
+    render(<App />)
+
+    expect(document.body.textContent).toMatch(/last month:/i)
+    expect(document.body.textContent).toMatch(/more to point at/i)
+  })
+
+  it('14.10b draws no movement on the very first month', () => {
+    skipIntro()
+    const state = openTurn(createCampaign(content, 'swe_bigtech_28', 12), content)
+    useStore.setState({ state, screen: 'allocate' })
+    render(<App />)
+
+    expect(document.querySelectorAll('.bar-moved')).toHaveLength(0)
+    expect(document.body.textContent).not.toMatch(/last month:/i)
+  })
+
   it('renders a turn counter and an energy meter on the allocate screen', () => {
     skipIntro()
     render(<App />)

@@ -301,6 +301,111 @@ button.link {
   margin-bottom: 3px;
 }
 
+/* --- why it went that way: one row per factor, one visible state each ------ */
+
+.factors {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.factor {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.factor-label {
+  color: var(--ink-soft);
+}
+
+.factor-state {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.factor.helped .factor-state {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.factor.hurt .factor-state {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.factor.decisive .factor-label {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* --- what changed: the same bar idiom as the career snapshot -------------- */
+
+.changes-bars {
+  margin-top: 12px;
+}
+
+.change {
+  margin-bottom: 10px;
+}
+
+.change-phrase {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-bottom: 5px;
+}
+
+.change-bar {
+  display: flex;
+  height: 10px;
+  background: var(--line);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Where the value already was: present but quiet. */
+.change-steady {
+  display: block;
+  height: 100%;
+  background: var(--ink-faint);
+  opacity: 0.4;
+}
+
+/*
+ * The part that moved this month, at true scale against the same 0–100 range
+ * the career snapshot uses.
+ *
+ * Real moves are small — median 1.3 points, 95th percentile 4 — because the
+ * game's whole claim is that a month barely shifts you and a year adds up. The
+ * floor here is 2px rather than 5: at 5 the median move clipped to the floor and
+ * every change rendered identically, which showed direction but destroyed
+ * magnitude. At 2px a one-point move is ~4px and a four-point move ~14px, which
+ * are told apart at a glance without exaggerating either.
+ */
+.change-moved {
+  display: block;
+  height: 100%;
+  min-width: 3px;
+  box-shadow: -1px 0 0 var(--card);
+}
+
+.change-moved.up {
+  background: var(--accent);
+}
+
+.change-moved.down {
+  background: var(--warn);
+}
+
 .band {
   display: inline-block;
   font-size: 12px;
@@ -345,7 +450,7 @@ button.link {
    ignores height and percentage width, so every bar in the game rendered as an
    empty track. jsdom does no layout, so no test caught it. */
 .bar {
-  display: block;
+  display: flex;
   flex: 1;
   height: 7px;
   background: var(--line);
@@ -358,6 +463,33 @@ button.link {
   height: 100%;
   min-width: 2px;
   background: var(--accent);
+  opacity: 0.55;
+}
+
+/* What the last month moved, on the end of where the value already sat. */
+.bar-moved {
+  display: block;
+  height: 100%;
+  min-width: 3px;
+  box-shadow: -1px 0 0 var(--card);
+}
+
+.bar-moved.up {
+  background: var(--accent);
+}
+
+.bar-moved.down {
+  background: var(--warn);
+}
+
+.snapshot-note {
+  font-size: 14px;
+  margin: 12px 0 0;
+}
+
+.pipeline-line {
+  font-size: 14px;
+  margin: 0 0 10px;
 }
 
 .trend {
