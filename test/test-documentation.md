@@ -222,6 +222,21 @@ line floated outside any card with nothing to attach it to.
 The "did they open the pipeline view" metric is retired: both views are now
 always visible, so the question no longer has an answer worth recording.
 
+## M4e — The energy meter
+
+The meter appeared to ignore the first two points of a spend: committing two
+recoloured pips without reducing the count, and only the third started removing
+them. An amber band of fixed width two floated immediately after the remaining
+pips and slid left as energy was committed, filling the gap it left behind.
+
+| # | Case | Expectation |
+|---|---|---|
+| 15.1 | One pip per point of the budget, always | The track never loses or gains a pip |
+| 15.2 | Committed pips equal what has been committed | Every point spent takes a pip out of the available run |
+| 15.3 | Every pip is either available or committed | No third state, and no pip that is neither |
+| 15.4 | Committing one point moves exactly one pip | Including the first one |
+| 15.5 | An untouched budget reads as entirely available | — |
+
 ## M6 — Balance harness
 
 | # | Case | Expectation |

@@ -109,15 +109,15 @@ body {
   flex: 1;
   height: 8px;
   border-radius: 2px;
-  background: var(--line);
 }
 
-.energy-pip.filled {
+.energy-pip.available {
   background: var(--accent);
 }
 
-.energy-pip.last {
-  background: var(--warn);
+/* Committed to something this month — spent, not warned about. */
+.energy-pip.committed {
+  background: var(--line);
 }
 
 /* ------------------------------------------------------------------- cards */

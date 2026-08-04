@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { render, screen, within } from '@testing-library/react'
+import { act, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { App } from '@app/App'
 import { useStore, startingScreen, screenAfterOpen } from '@app/store'
@@ -186,6 +186,68 @@ describe('playing a turn', () => {
 
     expect(useStore.getState().error).toBeTruthy()
     expect(useStore.getState().state.turn).toBe(1)
+  })
+})
+
+describe('the energy meter', () => {
+  // Test intent: test/test-documentation.md, M4e (15.1–15.5)
+
+  function meter() {
+    return {
+      total: document.querySelectorAll('.energy-pip').length,
+      available: document.querySelectorAll('.energy-pip.available').length,
+      committed: document.querySelectorAll('.energy-pip.committed').length,
+    }
+  }
+
+  /** Commit `energy` to the first scalable card on the table. */
+  function spend(energy: number) {
+    const offer = useStore.getState().state.offers.find((o) => o.shape === 'scalable')!
+    // Wrapped so React flushes the re-render before the meter is read.
+    act(() => useStore.getState().setEffort(offer.id, energy))
+  }
+
+  it('15.5 reads as entirely available before anything is committed', () => {
+    skipIntro()
+    render(<App />)
+
+    const budget = useStore.getState().budget()
+    expect(meter()).toEqual({ total: budget, available: budget, committed: 0 })
+  })
+
+  it('15.4 moves exactly one pip for the first point committed', () => {
+    skipIntro()
+    render(<App />)
+    const budget = useStore.getState().budget()
+
+    spend(1)
+    expect(meter()).toEqual({ total: budget, available: budget - 1, committed: 1 })
+  })
+
+  it('15.2 takes a pip out of the available run for every point committed', () => {
+    skipIntro()
+    render(<App />)
+    const budget = useStore.getState().budget()
+
+    for (const energy of [1, 2, 3, 4]) {
+      spend(energy)
+      const spentNow = useStore.getState().spent()
+      expect(meter().available, `after committing ${energy}`).toBe(budget - spentNow)
+      expect(meter().committed, `after committing ${energy}`).toBe(spentNow)
+    }
+  })
+
+  it('15.1 and 15.3 keep every pip in exactly one of two states', () => {
+    skipIntro()
+    render(<App />)
+    const budget = useStore.getState().budget()
+
+    for (const energy of [0, 1, 2, 3, 5]) {
+      spend(energy)
+      const m = meter()
+      expect(m.total).toBe(budget)
+      expect(m.available + m.committed).toBe(budget)
+    }
   })
 })
 
