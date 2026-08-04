@@ -1,0 +1,712 @@
+{
+  "exportedSessions": 1,
+  "sessions": [
+    {
+      "sessionId": "smsdyg3cf",
+      "startedAt": 1785805433583,
+      "seed": 1246522925,
+      "profileId": "swe_bigtech_28",
+      "turns": [
+        {
+          "turn": 1,
+          "openedAt": 0,
+          "energyAvailable": 10,
+          "energyAllocated": 6,
+          "energyUnused": 4,
+          "allocations": [
+            {
+              "templateId": "pub_write_technical_post",
+              "category": "network_public",
+              "energy": 3
+            },
+            {
+              "templateId": "cj_mentor_juniors",
+              "category": "current_job",
+              "energy": 3
+            }
+          ],
+          "cardsOffered": [
+            "pub_write_technical_post@1",
+            "cj_mentor_juniors@1",
+            "net_reconnect_dormant_ties@1",
+            "net_coffee_with_operators@1",
+            "proj_open_source_tool@1",
+            "cj_stretch_visible_project@1",
+            "cj_deliver_core_roadmap@1"
+          ],
+          "cardsExpiredUnused": [],
+          "screenDwellMs": {
+            "allocate": 124174
+          },
+          "snapshotExpanded": false,
+          "pipelineViewOpened": false,
+          "costInflationSeen": [],
+          "committedAt": 133049
+        },
+        {
+          "turn": 2,
+          "openedAt": 133984,
+          "energyAvailable": 8,
+          "energyAllocated": 8,
+          "energyUnused": 0,
+          "allocations": [
+            {
+              "templateId": "cj_stretch_visible_project",
+              "category": "current_job",
+              "energy": 6
+            },
+            {
+              "templateId": "net_reconnect_dormant_ties",
+              "category": "network_public",
+              "energy": 2
+            }
+          ],
+          "cardsOffered": [
+            "net_reconnect_dormant_ties@1",
+            "net_coffee_with_operators@1",
+            "proj_open_source_tool@1",
+            "cj_stretch_visible_project@1",
+            "cj_deliver_core_roadmap@1"
+          ],
+          "cardsExpiredUnused": [
+            "cj_deliver_core_roadmap@1"
+          ],
+          "screenDwellMs": {
+            "review": 997,
+            "allocate": 2023
+          },
+          "snapshotExpanded": false,
+          "pipelineViewOpened": false,
+          "costInflationSeen": [
+            {
+              "category": "network_public",
+              "from": 1,
+              "to": 2
+            },
+            {
+              "category": "current_job",
+              "from": 4,
+              "to": 6
+            },
+            {
+              "category": "current_job",
+              "from": 1,
+              "to": 2
+            }
+          ],
+          "committedAt": 137004
+        },
+        {
+          "turn": 3,
+          "openedAt": 137983,
+          "energyAvailable": 8,
+          "energyAllocated": 8,
+          "energyUnused": 0,
+          "allocations": [
+            {
+              "templateId": "role_staff_eng_bigtech",
+              "category": "job_search",
+              "energy": 2
+            },
+            {
+              "templateId": "net_coffee_with_operators",
+              "category": "network_public",
+              "energy": 6
+            }
+          ],
+          "cardsOffered": [
+            "net_coffee_with_operators@1",
+            "proj_open_source_tool@1",
+            "role_staff_eng_bigtech@3",
+            "proj_technical_writing_series@3"
+          ],
+          "cardsExpiredUnused": [
+            "proj_open_source_tool@1"
+          ],
+          "screenDwellMs": {
+            "review": 996,
+            "allocate": 2068
+          },
+          "snapshotExpanded": false,
+          "pipelineViewOpened": false,
+          "costInflationSeen": [
+            {
+              "category": "network_public",
+              "from": 1,
+              "to": 2
+            }
+          ],
+          "committedAt": 141047
+        },
+        {
+          "turn": 4,
+          "openedAt": 141983,
+          "energyAvailable": 10,
+          "energyAllocated": 3,
+          "energyUnused": 7,
+          "allocations": [
+            {
+              "templateId": "proj_technical_writing_series",
+              "category": "project",
+              "energy": 3
+            }
+          ],
+          "cardsOffered": [
+            "proj_technical_writing_series@3",
+            "learn_ml_fundamentals@4",
+            "proj_prototype_for_nonprofit@4",
+            "learn_writing_and_comms@4",
+            "cj_fix_the_thing_nobody_owns@4"
+          ],
+          "cardsExpiredUnused": [],
+          "screenDwellMs": {
+            "review": 997,
+            "allocate": 2065
+          },
+          "snapshotExpanded": false,
+          "pipelineViewOpened": false,
+          "costInflationSeen": [
+            {
+              "category": "current_job",
+              "from": 2,
+              "to": 3
+            }
+          ],
+          "committedAt": 145045,
+          "probe": {
+            "difficulty": 1,
+            "awareness": "yes"
+          }
+        },
+        {
+          "turn": 5,
+          "openedAt": 147031,
+          "energyAvailable": 10,
+          "energyAllocated": 6,
+          "energyUnused": 4,
+          "allocations": [
+            {
+              "templateId": "role_staff_eng_bigtech",
+              "category": "job_search",
+              "energy": 3
+            },
+            {
+              "templateId": "learn_ml_fundamentals",
+              "category": "learning",
+              "energy": 3
+            }
+          ],
+          "cardsOffered": [
+            "cont_hiring_role_staff_eng_bigtech_5@5",
+            "learn_ml_fundamentals@4",
+            "proj_prototype_for_nonprofit@4",
+            "learn_writing_and_comms@4",
+            "cj_fix_the_thing_nobody_owns@4"
+          ],
+          "cardsExpiredUnused": [
+            "cj_fix_the_thing_nobody_owns@4"
+          ],
+          "screenDwellMs": {
+            "review": 948,
+            "allocate": 2001
+          },
+          "snapshotExpanded": false,
+          "pipelineViewOpened": false,
+          "costInflationSeen": [
+            {
+              "category": "project",
+              "from": 1,
+              "to": 2
+            }
+          ],
+          "committedAt": 149980
+        },
+        {
+          "turn": 6,
+          "openedAt": 150982,
+          "energyAvailable": 10,
+          "energyAllocated": 7,
+          "energyUnused": 3,
+          "allocations": [
+            {
+              "templateId": "role_staff_eng_bigtech",
+              "category": "job_search",
+              "energy": 4
+            },
+            {
+              "templateId": "proj_prototype_for_nonprofit",
+              "category": "project",
+              "energy": 3
+            }
+          ],
+          "cardsOffered": [
+            "cont_hiring_role_staff_eng_bigtech_5@6",
+            "proj_prototype_for_nonprofit@4",
+            "learn_writing_and_comms@4",
+            "cj_deliver_core_roadmap@6",
+            "learn_apply_at_work@6",
+            "learn_ml_fundamentals@6"
+          ],
+          "cardsExpiredUnused": [
+            "learn_writing_and_comms@4"
+          ],
+          "screenDwellMs": {
+            "review": 997,
+            "allocate": 1999
+          },
+          "snapshotExpanded": false,
+          "pipelineViewOpened": false,
+          "costInflationSeen": [
+            {
+              "category": "learning",
+              "from": 1,
+              "to": 2
+            },
+            {
+              "category": "learning",
+              "from": 3,
+              "to": 5
+            },
+            {
+              "category": "learning",
+              "from": 2,
+              "to": 3
+            }
+          ],
+          "committedAt": 153979
+        },
+        {
+          "turn": 7,
+          "openedAt": 154981,
+          "energyAvailable": 10,
+          "energyAllocated": 4,
+          "energyUnused": 6,
+          "allocations": [
+            {
+              "templateId": "role_staff_eng_bigtech",
+              "category": "job_search",
+              "energy": 1
+            },
+            {
+              "templateId": "cj_deliver_core_roadmap",
+              "category": "current_job",
+              "energy": 3
+            }
+          ],
+          "cardsOffered": [
+            "cont_hiring_role_staff_eng_bigtech_5@7",
+            "cj_deliver_core_roadmap@6",
+            "learn_apply_at_work@6",
+            "learn_ml_fundamentals@6",
+            "net_coffee_with_operators@7",
+            "proj_prototype_for_nonprofit@7",
+            "cj_mentor_juniors@7"
+          ],
+          "cardsExpiredUnused": [
+            "learn_apply_at_work@6"
+          ],
+          "screenDwellMs": {
+            "review": 998,
+            "allocate": 2002
+          },
+          "snapshotExpanded": false,
+          "pipelineViewOpened": false,
+          "costInflationSeen": [
+            {
+              "category": "project",
+              "from": 1,
+              "to": 2
+            }
+          ],
+          "committedAt": 157981
+        },
+        {
+          "turn": 8,
+          "openedAt": 158982,
+          "energyAvailable": 10,
+          "energyAllocated": 7,
+          "energyUnused": 3,
+          "allocations": [
+            {
+              "templateId": "net_conference_attendance",
+              "category": "network_public",
+              "energy": 4
+            },
+            {
+              "templateId": "learn_ml_fundamentals",
+              "category": "learning",
+              "energy": 3
+            }
+          ],
+          "cardsOffered": [
+            "learn_ml_fundamentals@6",
+            "net_coffee_with_operators@7",
+            "proj_prototype_for_nonprofit@7",
+            "cj_mentor_juniors@7",
+            "net_reconnect_dormant_ties@8",
+            "learn_distributed_systems_depth@8",
+            "net_conference_attendance@8"
+          ],
+          "cardsExpiredUnused": [],
+          "screenDwellMs": {
+            "review": 998,
+            "allocate": 2000
+          },
+          "snapshotExpanded": false,
+          "pipelineViewOpened": false,
+          "costInflationSeen": [
+            {
+              "category": "current_job",
+              "from": 1,
+              "to": 2
+            }
+          ],
+          "committedAt": 161980,
+          "probe": {
+            "difficulty": 1,
+            "awareness": "yes"
+          }
+        },
+        {
+          "turn": 9,
+          "openedAt": 163984,
+          "energyAvailable": 10,
+          "energyAllocated": 10,
+          "energyUnused": 0,
+          "allocations": [
+            {
+              "templateId": "pub_write_technical_post",
+              "category": "network_public",
+              "energy": 5
+            },
+            {
+              "templateId": "net_coffee_with_operators",
+              "category": "network_public",
+              "energy": 5
+            }
+          ],
+          "cardsOffered": [
+            "net_coffee_with_operators@7",
+            "proj_prototype_for_nonprofit@7",
+            "cj_mentor_juniors@7",
+            "net_reconnect_dormant_ties@8",
+            "learn_distributed_systems_depth@8",
+            "pub_write_technical_post@9",
+            "learn_apply_at_work@9"
+          ],
+          "cardsExpiredUnused": [
+            "proj_prototype_for_nonprofit@7",
+            "cj_mentor_juniors@7"
+          ],
+          "screenDwellMs": {
+            "review": 995,
+            "allocate": 2069
+          },
+          "snapshotExpanded": false,
+          "pipelineViewOpened": false,
+          "costInflationSeen": [
+            {
+              "category": "network_public",
+              "from": 1,
+              "to": 2
+            },
+            {
+              "category": "learning",
+              "from": 1,
+              "to": 2
+            },
+            {
+              "category": "network_public",
+              "from": 3,
+              "to": 5
+            },
+            {
+              "category": "learning",
+              "from": 3,
+              "to": 5
+            }
+          ],
+          "committedAt": 167048
+        },
+        {
+          "turn": 10,
+          "openedAt": 167982,
+          "energyAvailable": 10,
+          "energyAllocated": 9,
+          "energyUnused": 1,
+          "allocations": [
+            {
+              "templateId": "learn_apply_at_work",
+              "category": "learning",
+              "energy": 3
+            },
+            {
+              "templateId": "net_reconnect_dormant_ties",
+              "category": "network_public",
+              "energy": 6
+            }
+          ],
+          "cardsOffered": [
+            "net_reconnect_dormant_ties@8",
+            "learn_distributed_systems_depth@8",
+            "learn_apply_at_work@9",
+            "proj_prototype_for_nonprofit@10",
+            "cj_fix_the_thing_nobody_owns@10",
+            "role_senior_eng_climate_startup@10",
+            "cj_stretch_visible_project@10"
+          ],
+          "cardsExpiredUnused": [
+            "learn_distributed_systems_depth@8"
+          ],
+          "screenDwellMs": {
+            "review": 997,
+            "allocate": 2070
+          },
+          "snapshotExpanded": false,
+          "pipelineViewOpened": false,
+          "costInflationSeen": [
+            {
+              "category": "network_public",
+              "from": 1,
+              "to": 2
+            }
+          ],
+          "committedAt": 171049
+        },
+        {
+          "turn": 11,
+          "openedAt": 171981,
+          "energyAvailable": 10,
+          "energyAllocated": 5,
+          "energyUnused": 5,
+          "allocations": [
+            {
+              "templateId": "role_senior_eng_climate_startup",
+              "category": "job_search",
+              "energy": 2
+            },
+            {
+              "templateId": "proj_prototype_for_nonprofit",
+              "category": "project",
+              "energy": 3
+            }
+          ],
+          "cardsOffered": [
+            "proj_prototype_for_nonprofit@10",
+            "cj_fix_the_thing_nobody_owns@10",
+            "role_senior_eng_climate_startup@10",
+            "cj_stretch_visible_project@10",
+            "cj_deliver_core_roadmap@11"
+          ],
+          "cardsExpiredUnused": [
+            "cj_fix_the_thing_nobody_owns@10",
+            "cj_stretch_visible_project@10"
+          ],
+          "screenDwellMs": {
+            "review": 997,
+            "allocate": 2067
+          },
+          "snapshotExpanded": false,
+          "pipelineViewOpened": false,
+          "costInflationSeen": [],
+          "committedAt": 175045
+        },
+        {
+          "turn": 12,
+          "openedAt": 175985,
+          "energyAvailable": 10,
+          "energyAllocated": 4,
+          "energyUnused": 6,
+          "allocations": [
+            {
+              "templateId": "cj_stretch_visible_project",
+              "category": "current_job",
+              "energy": 4
+            }
+          ],
+          "cardsOffered": [
+            "cj_deliver_core_roadmap@11",
+            "cj_stretch_visible_project@12",
+            "learn_ml_fundamentals@12",
+            "proj_open_source_tool@12"
+          ],
+          "cardsExpiredUnused": [
+            "cj_deliver_core_roadmap@11"
+          ],
+          "screenDwellMs": {
+            "review": 995,
+            "allocate": 1643
+          },
+          "snapshotExpanded": false,
+          "pipelineViewOpened": false,
+          "costInflationSeen": [
+            {
+              "category": "project",
+              "from": 1,
+              "to": 2
+            }
+          ],
+          "committedAt": 178623
+        }
+      ],
+      "outcomesShown": [
+        {
+          "turn": 2,
+          "fromTurn": 2,
+          "band": "success",
+          "templateId": "personal_family_obligation"
+        },
+        {
+          "turn": 3,
+          "fromTurn": 1,
+          "band": "nearMiss",
+          "templateId": "pub_write_technical_post"
+        },
+        {
+          "turn": 3,
+          "fromTurn": 1,
+          "band": "strong",
+          "templateId": "cj_mentor_juniors"
+        },
+        {
+          "turn": 3,
+          "fromTurn": 2,
+          "band": "success",
+          "templateId": "cj_stretch_visible_project"
+        },
+        {
+          "turn": 4,
+          "fromTurn": 2,
+          "band": "success",
+          "templateId": "net_reconnect_dormant_ties"
+        },
+        {
+          "turn": 4,
+          "fromTurn": 4,
+          "band": "success",
+          "templateId": "market_ai_capability_jump"
+        },
+        {
+          "turn": 5,
+          "fromTurn": 3,
+          "band": "success",
+          "templateId": "role_staff_eng_bigtech"
+        },
+        {
+          "turn": 6,
+          "fromTurn": 5,
+          "band": "strong",
+          "templateId": "role_staff_eng_bigtech"
+        },
+        {
+          "turn": 6,
+          "fromTurn": 6,
+          "band": "success",
+          "templateId": "market_hiring_freeze"
+        },
+        {
+          "turn": 7,
+          "fromTurn": 3,
+          "band": "success",
+          "templateId": "net_coffee_with_operators"
+        },
+        {
+          "turn": 7,
+          "fromTurn": 6,
+          "band": "strong",
+          "templateId": "role_staff_eng_bigtech"
+        },
+        {
+          "turn": 8,
+          "fromTurn": 4,
+          "band": "nearMiss",
+          "templateId": "proj_technical_writing_series"
+        },
+        {
+          "turn": 8,
+          "fromTurn": 6,
+          "band": "nearMiss",
+          "templateId": "proj_prototype_for_nonprofit"
+        },
+        {
+          "turn": 8,
+          "fromTurn": 7,
+          "band": "success",
+          "templateId": "role_staff_eng_bigtech"
+        },
+        {
+          "turn": 8,
+          "fromTurn": 7,
+          "band": "strong",
+          "templateId": "cj_deliver_core_roadmap"
+        },
+        {
+          "turn": 8,
+          "fromTurn": 8,
+          "band": "success",
+          "templateId": "org_manager_departs"
+        },
+        {
+          "turn": 9,
+          "fromTurn": 5,
+          "band": "failure",
+          "templateId": "learn_ml_fundamentals"
+        },
+        {
+          "turn": 9,
+          "fromTurn": 8,
+          "band": "nearMiss",
+          "templateId": "net_conference_attendance"
+        },
+        {
+          "turn": 10,
+          "fromTurn": 10,
+          "band": "success",
+          "templateId": "personal_unexpected_expense"
+        },
+        {
+          "turn": 11,
+          "fromTurn": 8,
+          "band": "nearMiss",
+          "templateId": "learn_ml_fundamentals"
+        },
+        {
+          "turn": 11,
+          "fromTurn": 9,
+          "band": "failure",
+          "templateId": "pub_write_technical_post"
+        },
+        {
+          "turn": 11,
+          "fromTurn": 9,
+          "band": "failure",
+          "templateId": "net_coffee_with_operators"
+        },
+        {
+          "turn": 11,
+          "fromTurn": 10,
+          "band": "success",
+          "templateId": "net_reconnect_dormant_ties"
+        },
+        {
+          "turn": 12,
+          "fromTurn": 10,
+          "band": "failure",
+          "templateId": "learn_apply_at_work"
+        },
+        {
+          "turn": 12,
+          "fromTurn": 11,
+          "band": "failure",
+          "templateId": "role_senior_eng_climate_startup"
+        },
+        {
+          "turn": 12,
+          "fromTurn": 11,
+          "band": "success",
+          "templateId": "proj_prototype_for_nonprofit"
+        }
+      ]
+    }
+  ]
+}
