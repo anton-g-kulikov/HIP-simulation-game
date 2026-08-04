@@ -1,0 +1,167 @@
+[
+  {
+    "id": "market_hiring_freeze",
+    "type": "market",
+    "narrative": {
+      "headline": "Hiring has frozen across most of the industry.",
+      "body": "Three of the companies you were watching pulled their open roles in the same week. Nobody is saying how long it lasts."
+    },
+    "trigger": { "minTurn": 3, "maxTurn": 10, "requires": [], "weight": 1.1, "oncePerCampaign": true },
+    "duration": 3,
+    "effects": [{ "op": "market", "amount": -0.12 }],
+    "opportunityModifiers": [
+      { "template": "role_staff_eng_bigtech", "weightMultiplier": 0.3 },
+      { "template": "role_tech_lead_scaleup", "weightMultiplier": 0.3 },
+      { "template": "role_ml_infra_ai_lab", "weightMultiplier": 0.4 }
+    ]
+  },
+  {
+    "id": "market_ai_capability_jump",
+    "type": "market",
+    "narrative": {
+      "headline": "Something shipped that moves the floor.",
+      "body": "A model release has made a chunk of what you are good at cheaper to do badly, and a different chunk considerably more valuable."
+    },
+    "trigger": { "minTurn": 2, "maxTurn": 11, "requires": [], "weight": 1.0, "oncePerCampaign": true },
+    "duration": 4,
+    "effects": [{ "op": "capital", "target": "evidence", "amount": -3 }],
+    "opportunityModifiers": [
+      { "template": "role_ml_infra_ai_lab", "weightMultiplier": 2.5 },
+      { "template": "learn_ml_fundamentals", "weightMultiplier": 2.0 }
+    ]
+  },
+  {
+    "id": "market_recruiter_surge",
+    "type": "market",
+    "narrative": {
+      "headline": "Your inbox filled up.",
+      "body": "Four recruiters in a fortnight. Most of it is noise, and the amount of noise is itself information about where you now sit."
+    },
+    "trigger": {
+      "minTurn": 4,
+      "maxTurn": 11,
+      "requires": [{ "path": "player.capital.reputation", "op": ">=", "value": 28 }],
+      "weight": 0.9,
+      "oncePerCampaign": true
+    },
+    "duration": 2,
+    "effects": [{ "op": "market", "amount": 0.08 }, { "op": "capital", "target": "network", "amount": 3 }],
+    "opportunityModifiers": [
+      { "template": "role_staff_eng_bigtech", "weightMultiplier": 1.8 },
+      { "template": "role_tech_lead_scaleup", "weightMultiplier": 1.6 }
+    ]
+  },
+  {
+    "id": "org_acquisition",
+    "type": "organizational",
+    "narrative": {
+      "headline": "Your company is being acquired.",
+      "body": "The all-hands used the word 'exciting' eleven times. Your equity is worth something and nobody can tell you what happens to your team."
+    },
+    "trigger": { "minTurn": 4, "maxTurn": 10, "requires": [], "weight": 0.9, "oncePerCampaign": true },
+    "duration": 3,
+    "effects": [
+      { "op": "finance", "target": "savings", "mode": "add", "amount": 22000 },
+      { "op": "role", "target": "orgQuality", "mode": "add", "amount": -0.1 },
+      { "op": "role", "target": "managerQuality", "mode": "add", "amount": -0.1 }
+    ],
+    "opportunityModifiers": [{ "template": "cj_push_for_promotion", "weightMultiplier": 0.2 }]
+  },
+  {
+    "id": "org_promotion_freeze",
+    "type": "organizational",
+    "narrative": {
+      "headline": "Promotions are paused until further notice.",
+      "body": "The cycle you had been working towards has been deferred. The email called it a pause."
+    },
+    "trigger": {
+      "minTurn": 3,
+      "maxTurn": 9,
+      "requires": [{ "path": "player.role.orgQuality", "op": "<=", "value": 0.75 }],
+      "weight": 1.0,
+      "oncePerCampaign": true
+    },
+    "duration": 3,
+    "effects": [],
+    "opportunityModifiers": [{ "template": "cj_push_for_promotion", "weightMultiplier": 0.0 }]
+  },
+  {
+    "id": "org_manager_departs",
+    "type": "organizational",
+    "narrative": {
+      "headline": "Your manager is leaving.",
+      "body": "The person who had been explaining your work to people above them announced their departure. Their replacement starts in two months."
+    },
+    "trigger": {
+      "minTurn": 3,
+      "maxTurn": 10,
+      "requires": [{ "path": "player.role.managerQuality", "op": ">=", "value": 0.5 }],
+      "weight": 1.1,
+      "oncePerCampaign": true
+    },
+    "duration": 3,
+    "effects": [{ "op": "role", "target": "managerQuality", "mode": "set", "amount": 0.35 }],
+    "opportunityModifiers": [{ "template": "cj_push_for_promotion", "weightMultiplier": 0.3 }]
+  },
+  {
+    "id": "org_project_cancelled",
+    "type": "organizational",
+    "narrative": {
+      "headline": "The work you had been doing was cancelled.",
+      "body": "A reorganisation two levels up ended the thing you had been building. The code is still there. Nobody will ever run it."
+    },
+    "trigger": {
+      "minTurn": 4,
+      "maxTurn": 11,
+      "requires": [{ "path": "pipeline.employer.visibleWork", "op": ">=", "value": 30 }],
+      "weight": 1.0,
+      "oncePerCampaign": true
+    },
+    "duration": 1,
+    "effects": [{ "op": "visibleWork", "amount": -45 }],
+    "opportunityModifiers": []
+  },
+  {
+    "id": "personal_burnout",
+    "type": "personal",
+    "narrative": {
+      "headline": "You are running on empty.",
+      "body": "Four months at full tilt has caught up with you. Nothing is wrong, exactly. You just have much less to give for a while."
+    },
+    "trigger": {
+      "minTurn": 5,
+      "maxTurn": 11,
+      "requires": [],
+      "weight": 1.4,
+      "oncePerCampaign": true,
+      "afterHighEffortTurns": 4
+    },
+    "duration": 2,
+    "effects": [{ "op": "energy", "amount": -3, "turns": 2 }],
+    "opportunityModifiers": []
+  },
+  {
+    "id": "personal_family_obligation",
+    "type": "personal",
+    "narrative": {
+      "headline": "Something at home needs you.",
+      "body": "It is not a crisis and it is not optional. For the next couple of months you have less of yourself to allocate to any of this."
+    },
+    "trigger": { "minTurn": 2, "maxTurn": 11, "requires": [], "weight": 1.0, "oncePerCampaign": true },
+    "duration": 2,
+    "effects": [{ "op": "energy", "amount": -2, "turns": 2 }],
+    "opportunityModifiers": []
+  },
+  {
+    "id": "personal_unexpected_expense",
+    "type": "personal",
+    "narrative": {
+      "headline": "An unavoidable expense landed.",
+      "body": "The kind of bill that is annoying if you have savings and serious if you do not."
+    },
+    "trigger": { "minTurn": 2, "maxTurn": 11, "requires": [], "weight": 0.9, "oncePerCampaign": true },
+    "duration": 1,
+    "effects": [{ "op": "finance", "target": "savings", "mode": "add", "amount": -18000 }],
+    "opportunityModifiers": []
+  }
+]

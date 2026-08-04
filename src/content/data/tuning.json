@@ -1,0 +1,284 @@
+{
+  "hiring": {
+    "maxConcurrent": 3,
+    "lapseAfterTurns": 2,
+    "referralNetworkFactor": 0.6,
+    "referralBonus": 0.08,
+    "rampTurns": 2,
+    "rampExecutionFactor": 0.85,
+    "rampEvidenceFactor": 0.8,
+    "acceptCost": 1,
+    "stages": [
+      {
+        "stage": "screen",
+        "label": "Initial screen",
+        "cost": 3,
+        "difficulty": 0.45,
+        "outcomes": {
+          "strong": {
+            "headline": "The screen went well enough that they skipped ahead to a technical round.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "capability.communication",
+                "amount": 2
+              }
+            ]
+          },
+          "success": {
+            "headline": "You cleared the initial screen.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "capability.communication",
+                "amount": 1
+              }
+            ]
+          },
+          "nearMiss": {
+            "headline": "The screen was inconclusive. They want another conversation before deciding.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "capability.communication",
+                "amount": 1
+              }
+            ]
+          },
+          "failure": {
+            "headline": "They passed after the screen. The recruiter mentioned what they were actually looking for.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "network",
+                "amount": 1
+              }
+            ]
+          }
+        }
+      },
+      {
+        "stage": "early_interview",
+        "label": "First interviews",
+        "cost": 3,
+        "difficulty": 0.55,
+        "outcomes": {
+          "strong": {
+            "headline": "The first round went unusually well. One interviewer asked to work with you directly.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "capability.communication",
+                "amount": 2
+              },
+              {
+                "op": "capital",
+                "target": "network",
+                "amount": 2
+              }
+            ]
+          },
+          "success": {
+            "headline": "You cleared the first round of interviews.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "capability.communication",
+                "amount": 2
+              }
+            ]
+          },
+          "nearMiss": {
+            "headline": "The panel was split. They are running one more conversation before deciding.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "capability.communication",
+                "amount": 1
+              }
+            ]
+          },
+          "failure": {
+            "headline": "They stopped the process after the first round.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "capability.communication",
+                "amount": 1
+              },
+              {
+                "op": "capital",
+                "target": "network",
+                "amount": 1
+              }
+            ]
+          }
+        }
+      },
+      {
+        "stage": "advanced_interview",
+        "label": "Final interviews",
+        "cost": 4,
+        "difficulty": 0.6,
+        "outcomes": {
+          "strong": {
+            "headline": "The final panel was emphatic. They moved straight to an offer conversation.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "capability.communication",
+                "amount": 2
+              },
+              {
+                "op": "capital",
+                "target": "reputation",
+                "amount": 2
+              }
+            ]
+          },
+          "success": {
+            "headline": "You cleared the final round.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "capability.communication",
+                "amount": 2
+              }
+            ]
+          },
+          "nearMiss": {
+            "headline": "You reached the last conversation and it stalled there.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "capability.communication",
+                "amount": 2
+              },
+              {
+                "op": "capital",
+                "target": "network",
+                "amount": 2
+              }
+            ]
+          },
+          "failure": {
+            "headline": "They went with someone else at the final stage.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "capability.communication",
+                "amount": 1
+              },
+              {
+                "op": "capital",
+                "target": "network",
+                "amount": 1
+              }
+            ]
+          }
+        }
+      },
+      {
+        "stage": "assignment",
+        "label": "Take-home assignment",
+        "cost": 6,
+        "difficulty": 0.5,
+        "outcomes": {
+          "strong": {
+            "headline": "Your assignment circulated internally as an example of what they wanted.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "evidence",
+                "amount": 4
+              },
+              {
+                "op": "capital",
+                "target": "reputation",
+                "amount": 2
+              }
+            ]
+          },
+          "success": {
+            "headline": "Your assignment cleared their bar.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "evidence",
+                "amount": 3
+              }
+            ]
+          },
+          "nearMiss": {
+            "headline": "The assignment was solid but they wanted more depth in one area.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "evidence",
+                "amount": 2
+              }
+            ]
+          },
+          "failure": {
+            "headline": "The assignment did not land the way you hoped.",
+            "effects": [
+              {
+                "op": "capital",
+                "target": "capability.execution",
+                "amount": 2
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "employer": {
+    "recognitionThreshold": 100,
+    "visibleWorkDecayPerTurn": 0.05,
+    "visibilityBase": 0.5,
+    "visibilityFromManager": 0.5,
+    "raiseMultiplier": 1.08,
+    "seniorityStep": 0.05,
+    "recognitionHeadline": "Your work over the last few months was recognised. Your scope and your pay both went up.",
+    "recognitionEffects": [
+      {
+        "op": "capital",
+        "target": "evidence",
+        "amount": 5
+      },
+      {
+        "op": "capital",
+        "target": "capability.leadership",
+        "amount": 3
+      }
+    ]
+  },
+  "learning": {
+    "unappliedDecayFactor": 0.35,
+    "applyTag": "applies_learning"
+  },
+  "project": {
+    "progressPerEnergy": 14,
+    "prototypeThreshold": 100,
+    "launchTag": "launches_project"
+  },
+  "market": {
+    "drift": 0.85,
+    "volatility": 0.04,
+    "min": -0.15,
+    "max": 0.15
+  },
+  "offers": {
+    "minPerTurn": 4,
+    "maxPerTurn": 7,
+    "recencyWindow": 3,
+    "defaultRecencyPenalty": 0.25,
+    "freshCategoryWindow": 3
+  },
+  "events": {
+    "minGapTurns": 2,
+    "firstEligibleTurn": 2,
+    "highEffortThreshold": 9
+  }
+}

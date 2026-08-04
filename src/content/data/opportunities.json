@@ -1,0 +1,2934 @@
+[
+  {
+    "id": "role_staff_eng_bigtech",
+    "kind": "hiring",
+    "category": "job_search",
+    "title": "Staff Engineer — large payments company",
+    "description": "A peer company is hiring at staff level on a platform team. The work is recognisably the work you already do, one rung up.",
+    "availability": {
+      "baseWeight": 1.2,
+      "seniority": {
+        "min": 0.4,
+        "max": 0.9
+      },
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "requires": []
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 2
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.5,
+      "match": {
+        "capability.technical": 0.35,
+        "capability.execution": 0.2,
+        "evidence": 0.3,
+        "network": 0.15
+      },
+      "fit": {
+        "deep_technical": 0.7,
+        "communication": 0.3
+      }
+    },
+    "delay": {
+      "1": 0.7,
+      "2": 0.3
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "They came back fast and asked to move quickly.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "deep_technical",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "Your application got through to a real conversation.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 1
+          },
+          {
+            "op": "observeFit",
+            "axis": "deep_technical",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "A recruiter replied, mostly to say the bar had moved.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 2
+          }
+        ]
+      },
+      "failure": {
+        "headline": "No reply. You learned what that pile looks like from the inside.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "roleOutcome": {
+      "title": "Staff Engineer",
+      "org": "a large payments company",
+      "compMultiplier": 1.18,
+      "orgQuality": 0.7,
+      "managerQuality": 0.6,
+      "seniorityDelta": 0.1
+    },
+    "signals": [
+      "hard_to_reverse"
+    ],
+    "tags": [
+      "prestige"
+    ]
+  },
+  {
+    "id": "role_senior_eng_climate_startup",
+    "kind": "hiring",
+    "category": "job_search",
+    "title": "Senior Engineer — grid modelling startup",
+    "description": "Twenty people, three years of runway, working on electricity grid forecasting. They would pay you noticeably less than you earn now.",
+    "availability": {
+      "baseWeight": 0.9,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 2
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.45,
+      "match": {
+        "capability.technical": 0.4,
+        "capability.execution": 0.3,
+        "evidence": 0.2,
+        "network": 0.1
+      },
+      "fit": {
+        "founding": 0.4,
+        "operations": 0.3,
+        "deep_technical": 0.3
+      }
+    },
+    "delay": {
+      "1": 0.7,
+      "2": 0.3
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "The founder replied personally within a day.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 3
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 3
+          },
+          {
+            "op": "observeFit",
+            "axis": "founding",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "They want to talk. They were direct about the pay.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "founding",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "They were interested and then went quiet — a funding round is closing.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "headline": "They passed. They wanted someone who had already worked in energy.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "roleOutcome": {
+      "title": "Senior Engineer",
+      "org": "a grid modelling startup",
+      "compMultiplier": 0.75,
+      "orgQuality": 0.5,
+      "managerQuality": 0.75,
+      "seniorityDelta": 0.05
+    },
+    "signals": [
+      "unclear_mission_fit",
+      "hard_to_reverse"
+    ],
+    "tags": [
+      "mission"
+    ]
+  },
+  {
+    "id": "role_tech_lead_scaleup",
+    "kind": "hiring",
+    "category": "job_search",
+    "title": "Tech Lead — logistics scale-up",
+    "description": "Leading a team of six. More of the job is people than code, which is the part you have the least evidence for.",
+    "availability": {
+      "baseWeight": 1.0,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 2
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.6,
+      "match": {
+        "capability.leadership": 0.35,
+        "capability.communication": 0.25,
+        "evidence": 0.25,
+        "network": 0.15
+      },
+      "fit": {
+        "leadership": 0.7,
+        "communication": 0.3
+      }
+    },
+    "delay": {
+      "1": 0.7,
+      "2": 0.3
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "They liked that you had been mentoring, and said so.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.leadership",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "leadership",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "They want to explore it, with questions about your management experience.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.leadership",
+            "amount": 1
+          },
+          {
+            "op": "observeFit",
+            "axis": "leadership",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "They liked you and could not get past the missing leadership track record.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "leadership",
+            "strength": "minor"
+          }
+        ]
+      },
+      "failure": {
+        "headline": "They wanted someone who had already run a team.",
+        "effects": [
+          {
+            "op": "observeFit",
+            "axis": "leadership",
+            "strength": "minor"
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "roleOutcome": {
+      "title": "Tech Lead",
+      "org": "a logistics scale-up",
+      "compMultiplier": 1.12,
+      "orgQuality": 0.6,
+      "managerQuality": 0.55,
+      "seniorityDelta": 0.12
+    },
+    "signals": [
+      "hard_to_reverse"
+    ],
+    "tags": [
+      "leadership"
+    ]
+  },
+  {
+    "id": "role_ml_infra_ai_lab",
+    "kind": "hiring",
+    "category": "job_search",
+    "title": "Infrastructure Engineer — AI research lab",
+    "description": "A serious research lab needs someone to build the systems the researchers run on. The applicant pool is enormous and unusually strong.",
+    "availability": {
+      "baseWeight": 0.8,
+      "requires": [
+        {
+          "path": "player.capital.evidence",
+          "op": ">=",
+          "value": 55
+        }
+      ],
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      }
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 2
+    },
+    "expiry": {
+      "turns": 2
+    },
+    "check": {
+      "difficulty": 0.72,
+      "match": {
+        "capability.technical": 0.4,
+        "evidence": 0.35,
+        "reputation": 0.15,
+        "network": 0.1
+      },
+      "fit": {
+        "deep_technical": 0.6,
+        "research": 0.4
+      }
+    },
+    "delay": {
+      "1": 0.4,
+      "2": 0.4,
+      "3": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "Someone senior there had read something you wrote.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 4
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "research",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "You got past the first filter, which most people do not.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "research",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "They kept your application on file, which they say to everyone and occasionally mean.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 2
+          }
+        ]
+      },
+      "failure": {
+        "headline": "Nothing. The pool was full of people who had done this exact thing before.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "roleOutcome": {
+      "title": "Infrastructure Engineer",
+      "org": "an AI research lab",
+      "compMultiplier": 1.25,
+      "orgQuality": 0.85,
+      "managerQuality": 0.65,
+      "seniorityDelta": 0.08
+    },
+    "signals": [
+      "crowded_field",
+      "hard_to_reverse"
+    ],
+    "tags": [
+      "prestige",
+      "frontier"
+    ]
+  },
+  {
+    "id": "role_eng_manager_internal",
+    "kind": "hiring",
+    "category": "job_search",
+    "title": "Engineering Manager — internal move",
+    "description": "Your own company is opening a manager role one team over. Everyone involved already knows your work, for better and worse.",
+    "availability": {
+      "baseWeight": 1.0,
+      "requires": [
+        {
+          "path": "pipeline.employer.visibleWork",
+          "op": ">=",
+          "value": 45
+        }
+      ],
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      }
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 2
+    },
+    "expiry": {
+      "turns": 2
+    },
+    "check": {
+      "difficulty": 0.5,
+      "match": {
+        "capability.leadership": 0.3,
+        "capability.communication": 0.2,
+        "evidence": 0.35,
+        "network": 0.15
+      },
+      "fit": {
+        "leadership": 0.6,
+        "operations": 0.4
+      }
+    },
+    "delay": {
+      "1": 0.7,
+      "2": 0.3
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "Your manager put your name forward before you finished asking.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.leadership",
+            "amount": 2
+          },
+          {
+            "op": "visibleWork",
+            "amount": 15
+          },
+          {
+            "op": "observeFit",
+            "axis": "leadership",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "You are a candidate. Internally, that is already public.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.leadership",
+            "amount": 1
+          },
+          {
+            "op": "observeFit",
+            "axis": "leadership",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "They want you to do it informally for a while first.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.leadership",
+            "amount": 2
+          },
+          {
+            "op": "visibleWork",
+            "amount": 10
+          }
+        ]
+      },
+      "failure": {
+        "headline": "They went external. You are now visibly someone who wanted it.",
+        "effects": [
+          {
+            "op": "observeFit",
+            "axis": "leadership",
+            "strength": "minor"
+          },
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "roleOutcome": {
+      "title": "Engineering Manager",
+      "org": "a large technology company",
+      "compMultiplier": 1.15,
+      "orgQuality": 0.65,
+      "managerQuality": 0.5,
+      "seniorityDelta": 0.15
+    },
+    "signals": [
+      "reversible"
+    ],
+    "tags": [
+      "leadership",
+      "internal"
+    ]
+  },
+  {
+    "id": "engage_contract_advisory",
+    "kind": "network_public",
+    "category": "job_search",
+    "title": "Two months of advisory work, evenings",
+    "description": "A former colleague's company wants eight hours a week of your time on their data platform. It pays, and it ends.",
+    "availability": {
+      "baseWeight": 0.9,
+      "requires": [
+        {
+          "path": "player.capital.network",
+          "op": ">=",
+          "value": 30
+        }
+      ],
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      }
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 3
+    },
+    "expiry": {
+      "turns": 2
+    },
+    "check": {
+      "difficulty": 0.4,
+      "match": {
+        "capability.technical": 0.5,
+        "evidence": 0.3,
+        "network": 0.2
+      },
+      "fit": {
+        "deep_technical": 0.5,
+        "operations": 0.5
+      }
+    },
+    "delay": {
+      "1": 0.7,
+      "2": 0.3
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "You fixed something they had lived with for a year. They told people.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 4
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 3
+          },
+          {
+            "op": "finance",
+            "target": "savings",
+            "mode": "add",
+            "amount": 9000
+          },
+          {
+            "op": "observeFit",
+            "axis": "operations",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "You did the work and got paid for it.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 2
+          },
+          {
+            "op": "finance",
+            "target": "savings",
+            "mode": "add",
+            "amount": 7000
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "The engagement fizzled halfway through when their priorities moved.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 1
+          },
+          {
+            "op": "finance",
+            "target": "savings",
+            "mode": "add",
+            "amount": 3000
+          }
+        ]
+      },
+      "failure": {
+        "headline": "It ate your evenings and produced very little either of you would point at.",
+        "effects": [
+          {
+            "op": "finance",
+            "target": "savings",
+            "mode": "add",
+            "amount": 2000
+          }
+        ]
+      }
+    },
+    "signals": [
+      "reversible"
+    ],
+    "tags": [
+      "income"
+    ]
+  },
+  {
+    "id": "cj_deliver_core_roadmap",
+    "kind": "current_job",
+    "category": "current_job",
+    "title": "Deliver what is already on your plate",
+    "description": "The roadmap work. Nobody will be surprised by it, and it is the reason you are trusted.",
+    "availability": {
+      "baseWeight": 1.6,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "scalable",
+      "min": 1,
+      "max": 5
+    },
+    "expiry": {
+      "turns": 2
+    },
+    "check": {
+      "difficulty": 0.35,
+      "match": {
+        "capability.execution": 0.6,
+        "capability.technical": 0.4
+      },
+      "fit": {
+        "deep_technical": 0.6,
+        "operations": 0.4
+      }
+    },
+    "delay": {
+      "1": 0.7,
+      "2": 0.3
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "You shipped more than anyone expected in the time.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 5
+          },
+          {
+            "op": "capital",
+            "target": "capability.execution",
+            "amount": 3
+          },
+          {
+            "op": "visibleWork",
+            "amount": 28
+          }
+        ]
+      },
+      "success": {
+        "headline": "You shipped what you said you would.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 3
+          },
+          {
+            "op": "capital",
+            "target": "capability.execution",
+            "amount": 2
+          },
+          {
+            "op": "visibleWork",
+            "amount": 18
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "It slipped, for the ordinary reasons things slip.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.execution",
+            "amount": 1
+          },
+          {
+            "op": "visibleWork",
+            "amount": 6
+          }
+        ]
+      },
+      "failure": {
+        "headline": "The work stalled on something outside your control.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.execution",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "signals": [
+      "reversible"
+    ],
+    "tags": []
+  },
+  {
+    "id": "cj_stretch_visible_project",
+    "kind": "current_job",
+    "category": "current_job",
+    "title": "Take the migration nobody wants to own",
+    "description": "High profile, badly scoped, and watched by people two levels above you. It will go visibly well or visibly badly.",
+    "availability": {
+      "baseWeight": 1.0,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 4
+    },
+    "expiry": {
+      "turns": 2
+    },
+    "check": {
+      "difficulty": 0.55,
+      "match": {
+        "capability.execution": 0.4,
+        "capability.technical": 0.25,
+        "capability.leadership": 0.2,
+        "evidence": 0.15
+      },
+      "fit": {
+        "operations": 0.4,
+        "leadership": 0.3,
+        "deep_technical": 0.3
+      }
+    },
+    "delay": {
+      "1": 0.4,
+      "2": 0.4,
+      "3": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "It landed cleanly and the people who noticed were the right ones.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 9
+          },
+          {
+            "op": "capital",
+            "target": "capability.leadership",
+            "amount": 3
+          },
+          {
+            "op": "visibleWork",
+            "amount": 55
+          },
+          {
+            "op": "observeFit",
+            "axis": "operations",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "It landed. Late, but it landed.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 6
+          },
+          {
+            "op": "capital",
+            "target": "capability.execution",
+            "amount": 2
+          },
+          {
+            "op": "visibleWork",
+            "amount": 38
+          },
+          {
+            "op": "observeFit",
+            "axis": "operations",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "Half of it shipped and the rest is still open.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.execution",
+            "amount": 2
+          },
+          {
+            "op": "visibleWork",
+            "amount": 14
+          }
+        ]
+      },
+      "failure": {
+        "headline": "It went badly in public. You now know exactly why.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.execution",
+            "amount": 3
+          },
+          {
+            "op": "observeFit",
+            "axis": "operations",
+            "strength": "minor"
+          }
+        ]
+      }
+    },
+    "signals": [
+      "high_uncertainty"
+    ],
+    "tags": []
+  },
+  {
+    "id": "cj_mentor_juniors",
+    "kind": "current_job",
+    "category": "current_job",
+    "title": "Take on two of the new engineers",
+    "description": "Nobody asked you to. It will not show up anywhere formal for a long time.",
+    "availability": {
+      "baseWeight": 1.0,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "scalable",
+      "min": 1,
+      "max": 4
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.4,
+      "match": {
+        "capability.communication": 0.4,
+        "capability.leadership": 0.4,
+        "capability.technical": 0.2
+      },
+      "fit": {
+        "leadership": 0.7,
+        "communication": 0.3
+      }
+    },
+    "delay": {
+      "2": 0.4,
+      "3": 0.4,
+      "4": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "One of them is visibly better because of you, and says so where it counts.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.leadership",
+            "amount": 5
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 3
+          },
+          {
+            "op": "visibleWork",
+            "amount": 15
+          },
+          {
+            "op": "observeFit",
+            "axis": "leadership",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "They are getting better, slowly, and they trust you.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.leadership",
+            "amount": 3
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "leadership",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "You gave a lot of time to someone who left anyway.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "headline": "It turned into answering the same question repeatedly.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 1
+          },
+          {
+            "op": "observeFit",
+            "axis": "leadership",
+            "strength": "minor"
+          }
+        ]
+      }
+    },
+    "signals": [
+      "slow_payoff"
+    ],
+    "tags": []
+  },
+  {
+    "id": "cj_fix_the_thing_nobody_owns",
+    "kind": "current_job",
+    "category": "current_job",
+    "title": "Fix the deployment system nobody owns",
+    "description": "Everyone loses an hour a week to it. Fixing it is real work that will be almost impossible to point at afterwards.",
+    "availability": {
+      "baseWeight": 0.9,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "scalable",
+      "min": 2,
+      "max": 5
+    },
+    "expiry": {
+      "turns": 2
+    },
+    "check": {
+      "difficulty": 0.45,
+      "match": {
+        "capability.technical": 0.6,
+        "capability.execution": 0.4
+      },
+      "fit": {
+        "deep_technical": 0.8,
+        "operations": 0.2
+      }
+    },
+    "delay": {
+      "1": 0.4,
+      "2": 0.4,
+      "3": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "It works now. The team noticed for about a week.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 6
+          },
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 5
+          },
+          {
+            "op": "visibleWork",
+            "amount": 8
+          },
+          {
+            "op": "observeFit",
+            "axis": "deep_technical",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "It is meaningfully better and almost nobody knows why.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 4
+          },
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 3
+          },
+          {
+            "op": "visibleWork",
+            "amount": 5
+          },
+          {
+            "op": "observeFit",
+            "axis": "deep_technical",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "You made it better and something else broke.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 2
+          }
+        ]
+      },
+      "failure": {
+        "headline": "You spent the time and it is roughly where it was.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "signals": [
+      "slow_payoff"
+    ],
+    "tags": [
+      "invisible_work"
+    ]
+  },
+  {
+    "id": "cj_push_for_promotion",
+    "kind": "current_job",
+    "category": "current_job",
+    "title": "Ask for the promotion",
+    "description": "Put together the case, have the conversation, and find out what your manager actually thinks.",
+    "availability": {
+      "baseWeight": 1.1,
+      "requires": [
+        {
+          "path": "pipeline.employer.visibleWork",
+          "op": ">=",
+          "value": 60
+        }
+      ],
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      }
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 3
+    },
+    "expiry": {
+      "turns": 2
+    },
+    "check": {
+      "difficulty": 0.5,
+      "match": {
+        "evidence": 0.5,
+        "capability.communication": 0.2,
+        "capability.leadership": 0.2,
+        "network": 0.1
+      },
+      "fit": {
+        "communication": 0.5,
+        "leadership": 0.5
+      }
+    },
+    "delay": {
+      "1": 0.4,
+      "2": 0.4,
+      "3": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "It went through, and faster than the usual cycle.",
+        "effects": [
+          {
+            "op": "finance",
+            "target": "monthlyComp",
+            "mode": "multiply",
+            "amount": 1.14
+          },
+          {
+            "op": "seniority",
+            "amount": 0.08
+          },
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 4
+          },
+          {
+            "op": "capital",
+            "target": "influence",
+            "amount": 4
+          }
+        ]
+      },
+      "success": {
+        "headline": "It went through at the next cycle.",
+        "effects": [
+          {
+            "op": "finance",
+            "target": "monthlyComp",
+            "mode": "multiply",
+            "amount": 1.1
+          },
+          {
+            "op": "seniority",
+            "amount": 0.06
+          },
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "influence",
+            "amount": 2
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "Not this cycle. You now have a written list of what would change that.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 2
+          },
+          {
+            "op": "visibleWork",
+            "amount": 10
+          }
+        ]
+      },
+      "failure": {
+        "headline": "It was not close, and the conversation was more honest than comfortable.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 1
+          },
+          {
+            "op": "observeFit",
+            "axis": "communication",
+            "strength": "minor"
+          }
+        ]
+      }
+    },
+    "signals": [
+      "reversible"
+    ],
+    "tags": []
+  },
+  {
+    "id": "learn_distributed_systems_depth",
+    "kind": "learning",
+    "category": "learning",
+    "title": "Go properly deep on distributed systems",
+    "description": "The papers, not the blog posts. You already know most of the shape of this.",
+    "availability": {
+      "baseWeight": 1.1,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "scalable",
+      "min": 1,
+      "max": 5
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.35,
+      "match": {
+        "capability.technical": 0.8,
+        "capability.execution": 0.2
+      },
+      "fit": {
+        "deep_technical": 1.0
+      }
+    },
+    "delay": {
+      "1": 0.7,
+      "2": 0.3
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "Several things you had been treating as folklore turned out to have reasons.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 6
+          },
+          {
+            "op": "observeFit",
+            "axis": "deep_technical",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "You understand a layer further down than you did.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 4
+          },
+          {
+            "op": "observeFit",
+            "axis": "deep_technical",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "You got through some of it before work took the evenings back.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 2
+          }
+        ]
+      },
+      "failure": {
+        "headline": "You read it and very little stuck without something to use it on.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "signals": [
+      "strong_learning"
+    ],
+    "tags": []
+  },
+  {
+    "id": "learn_ml_fundamentals",
+    "kind": "learning",
+    "category": "learning",
+    "title": "Learn machine learning from the bottom",
+    "description": "Slow, unglamorous, and the entry ticket to a set of roles that are currently closed to you.",
+    "availability": {
+      "baseWeight": 1.0,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "scalable",
+      "min": 2,
+      "max": 5
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.55,
+      "match": {
+        "capability.technical": 0.7,
+        "capability.execution": 0.3
+      },
+      "fit": {
+        "deep_technical": 0.5,
+        "research": 0.5
+      }
+    },
+    "delay": {
+      "2": 0.4,
+      "3": 0.4,
+      "4": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "It clicked, and faster than you expected it to.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 6
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 3
+          },
+          {
+            "op": "observeFit",
+            "axis": "research",
+            "strength": "notable"
+          },
+          {
+            "op": "unlock",
+            "template": "role_ml_infra_ai_lab"
+          }
+        ]
+      },
+      "success": {
+        "headline": "You can follow the papers now, mostly.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 4
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "research",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "You got through the maths and ran out of turns before the interesting part.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "headline": "It was harder going than you wanted to admit.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 1
+          },
+          {
+            "op": "observeFit",
+            "axis": "research",
+            "strength": "minor"
+          }
+        ]
+      }
+    },
+    "signals": [
+      "strong_learning",
+      "slow_payoff"
+    ],
+    "tags": []
+  },
+  {
+    "id": "learn_writing_and_comms",
+    "kind": "learning",
+    "category": "learning",
+    "title": "Get better at writing things down",
+    "description": "Design docs, arguments, explanations. The skill that quietly gates most of the roles above yours.",
+    "availability": {
+      "baseWeight": 0.9,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "scalable",
+      "min": 1,
+      "max": 4
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.4,
+      "match": {
+        "capability.communication": 0.7,
+        "capability.technical": 0.3
+      },
+      "fit": {
+        "communication": 1.0
+      }
+    },
+    "delay": {
+      "1": 0.4,
+      "2": 0.4,
+      "3": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "A document you wrote settled an argument that had been running for months.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 6
+          },
+          {
+            "op": "visibleWork",
+            "amount": 12
+          },
+          {
+            "op": "observeFit",
+            "axis": "communication",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "Your writing is tighter and people are reading further into it.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 4
+          },
+          {
+            "op": "observeFit",
+            "axis": "communication",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "You practised without anyone reading the result.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 2
+          }
+        ]
+      },
+      "failure": {
+        "headline": "You wrote a lot of words nobody needed.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "signals": [
+      "strong_learning",
+      "slow_payoff"
+    ],
+    "tags": []
+  },
+  {
+    "id": "learn_apply_at_work",
+    "kind": "learning",
+    "category": "learning",
+    "title": "Use what you have been learning on something real",
+    "description": "Take the thing you have been studying and put it into work that other people depend on.",
+    "availability": {
+      "baseWeight": 2.6,
+      "requires": [
+        {
+          "path": "pipeline.learning.unappliedStudyTurns",
+          "op": ">=",
+          "value": 1
+        }
+      ],
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      }
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 3
+    },
+    "expiry": {
+      "turns": 2
+    },
+    "check": {
+      "difficulty": 0.45,
+      "match": {
+        "capability.technical": 0.4,
+        "capability.execution": 0.4,
+        "evidence": 0.2
+      },
+      "fit": {
+        "deep_technical": 0.6,
+        "operations": 0.4
+      }
+    },
+    "delay": {
+      "1": 0.7,
+      "2": 0.3
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "It worked in production and now there is something to point at.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 7
+          },
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 3
+          },
+          {
+            "op": "visibleWork",
+            "amount": 25
+          },
+          {
+            "op": "observeFit",
+            "axis": "deep_technical",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "You used it for real, which is the part that makes it stick.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 5
+          },
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 2
+          },
+          {
+            "op": "visibleWork",
+            "amount": 15
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "You got it working and then the project was reprioritised.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "headline": "It did not survive contact with the real system.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    "tags": [
+      "applies_learning"
+    ],
+    "signals": []
+  },
+  {
+    "id": "proj_open_source_tool",
+    "kind": "project",
+    "category": "project",
+    "title": "Build the tool you keep wishing existed",
+    "description": "A weekend's worth of scaffolding, then however much you feed it. Nobody has asked for it.",
+    "availability": {
+      "baseWeight": 1.1,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "scalable",
+      "min": 1,
+      "max": 8
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.45,
+      "match": {
+        "capability.technical": 0.6,
+        "capability.execution": 0.4
+      },
+      "fit": {
+        "deep_technical": 0.5,
+        "founding": 0.5
+      }
+    },
+    "delay": {
+      "1": 0.4,
+      "2": 0.4,
+      "3": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "It works, it is documented, and two strangers have already opened issues.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 4
+          },
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 5
+          },
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 3
+          },
+          {
+            "op": "observeFit",
+            "axis": "founding",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "It works. You are the only user so far.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 3
+          },
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "founding",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "It half works and you know exactly which half.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 2
+          }
+        ]
+      },
+      "failure": {
+        "headline": "You lost the thread of it somewhere around the third evening.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.technical",
+            "amount": 1
+          },
+          {
+            "op": "observeFit",
+            "axis": "founding",
+            "strength": "minor"
+          }
+        ]
+      }
+    },
+    "signals": [
+      "high_uncertainty"
+    ],
+    "tags": []
+  },
+  {
+    "id": "proj_technical_writing_series",
+    "kind": "project",
+    "category": "project",
+    "title": "Write the series you keep drafting in your head",
+    "description": "Six pieces on the thing you actually know about. It costs project time and pays in reputation.",
+    "availability": {
+      "baseWeight": 0.9,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "scalable",
+      "min": 1,
+      "max": 6
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.5,
+      "match": {
+        "capability.communication": 0.5,
+        "capability.technical": 0.35,
+        "reputation": 0.15
+      },
+      "fit": {
+        "communication": 0.7,
+        "deep_technical": 0.3
+      }
+    },
+    "delay": {
+      "2": 0.4,
+      "3": 0.4,
+      "4": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "One of the pieces got passed around by people you have never met.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 8
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 3
+          },
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 3
+          },
+          {
+            "op": "observeFit",
+            "axis": "communication",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "You published them. A few hundred people read the good one.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 4
+          },
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "communication",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "You published two of six and stopped.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "headline": "The drafts are still drafts.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "signals": [
+      "slow_payoff"
+    ],
+    "tags": []
+  },
+  {
+    "id": "proj_prototype_for_nonprofit",
+    "kind": "project",
+    "category": "project",
+    "title": "Build the thing a small charity keeps asking for",
+    "description": "A caseworker you met needs something that does not exist. It is unglamorous and someone would use it on Monday.",
+    "availability": {
+      "baseWeight": 0.85,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "scalable",
+      "min": 1,
+      "max": 6
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.42,
+      "match": {
+        "capability.execution": 0.5,
+        "capability.technical": 0.3,
+        "capability.communication": 0.2
+      },
+      "fit": {
+        "operations": 0.5,
+        "founding": 0.3,
+        "communication": 0.2
+      }
+    },
+    "delay": {
+      "1": 0.4,
+      "2": 0.4,
+      "3": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "They are using it daily and have asked what else you could build.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 6
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 4
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 5
+          },
+          {
+            "op": "observeFit",
+            "axis": "operations",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "They are using it. It saves someone about an hour a day.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 4
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 3
+          },
+          {
+            "op": "observeFit",
+            "axis": "operations",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "You built it and the person who wanted it changed jobs.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 2
+          }
+        ]
+      },
+      "failure": {
+        "headline": "What they needed turned out not to be what they asked for.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "signals": [
+      "reversible"
+    ],
+    "tags": [
+      "mission"
+    ]
+  },
+  {
+    "id": "proj_launch",
+    "kind": "project",
+    "category": "project",
+    "title": "Put the project in front of people",
+    "description": "Stop polishing it. Announce it, post it, send it to the people who might care, and find out.",
+    "availability": {
+      "baseWeight": 2.0,
+      "pipelineStage": [
+        "prototype"
+      ],
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 5
+    },
+    "expiry": {
+      "turns": 2
+    },
+    "check": {
+      "difficulty": 0.62,
+      "match": {
+        "capability.communication": 0.35,
+        "reputation": 0.3,
+        "network": 0.2,
+        "capability.execution": 0.15
+      },
+      "fit": {
+        "founding": 0.6,
+        "communication": 0.4
+      }
+    },
+    "delay": {
+      "1": 0.4,
+      "2": 0.4,
+      "3": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "It found its people. The traffic did not stop after the first day.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 10
+          },
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 7
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 5
+          },
+          {
+            "op": "observeFit",
+            "axis": "founding",
+            "strength": "decisive"
+          }
+        ]
+      },
+      "success": {
+        "headline": "A real number of people showed up and some of them stayed.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 6
+          },
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 5
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 3
+          },
+          {
+            "op": "observeFit",
+            "axis": "founding",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "A flurry on the first day and nothing after it.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 3
+          },
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "headline": "You launched it and nobody came.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "evidence",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "capability.execution",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "founding",
+            "strength": "minor"
+          }
+        ]
+      }
+    },
+    "signals": [
+      "high_uncertainty"
+    ],
+    "tags": [
+      "launches_project"
+    ]
+  },
+  {
+    "id": "net_reconnect_dormant_ties",
+    "kind": "network_public",
+    "category": "network_public",
+    "title": "Get back in touch with people you have lost track of",
+    "description": "Six or seven messages to people you used to work with. Not asking for anything.",
+    "availability": {
+      "baseWeight": 1.2,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "scalable",
+      "min": 1,
+      "max": 3
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.3,
+      "match": {
+        "network": 0.6,
+        "capability.communication": 0.4
+      },
+      "fit": {
+        "communication": 0.6,
+        "operations": 0.4
+      }
+    },
+    "delay": {
+      "1": 0.4,
+      "2": 0.4,
+      "3": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "Two of them wanted to talk properly, and one of them is hiring.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 7
+          },
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 1
+          }
+        ]
+      },
+      "success": {
+        "headline": "Several good conversations, no particular outcome.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 5
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "Polite replies from people who are very busy.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 2
+          }
+        ]
+      },
+      "failure": {
+        "headline": "Mostly silence. It has been a while.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "signals": [
+      "reversible"
+    ],
+    "tags": []
+  },
+  {
+    "id": "net_conference_attendance",
+    "kind": "network_public",
+    "category": "network_public",
+    "title": "Go to the conference this month",
+    "description": "Three days, most of it useless, and occasionally the entire point of a year.",
+    "availability": {
+      "baseWeight": 0.7,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 4
+    },
+    "expiry": {
+      "turns": 1
+    },
+    "check": {
+      "difficulty": 0.45,
+      "match": {
+        "network": 0.35,
+        "reputation": 0.3,
+        "capability.communication": 0.35
+      },
+      "fit": {
+        "communication": 0.6,
+        "founding": 0.4
+      }
+    },
+    "delay": {
+      "1": 0.7,
+      "2": 0.3
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "You met someone whose work you had followed for years, and they remembered yours.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 10
+          },
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 4
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 2
+          }
+        ]
+      },
+      "success": {
+        "headline": "A good haul of conversations and two people worth staying in touch with.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 7
+          },
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 2
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "You spent most of it standing near conversations rather than in them.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 3
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "headline": "Three days, some talks you could have watched later, nobody new.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "signals": [
+      "high_uncertainty"
+    ],
+    "tags": []
+  },
+  {
+    "id": "net_coffee_with_operators",
+    "kind": "network_public",
+    "category": "network_public",
+    "title": "Have coffee with people doing interesting things",
+    "description": "Four conversations with people whose work you do not understand yet. No agenda.",
+    "availability": {
+      "baseWeight": 1.0,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "scalable",
+      "min": 1,
+      "max": 3
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.5,
+      "match": {
+        "network": 0.4,
+        "capability.communication": 0.4,
+        "reputation": 0.2
+      },
+      "fit": {
+        "communication": 0.5,
+        "operations": 0.5
+      }
+    },
+    "delay": {
+      "2": 0.4,
+      "3": 0.4,
+      "4": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "One of those conversations is going to change what you do next. You cannot tell which yet.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 5
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 4
+          }
+        ]
+      },
+      "success": {
+        "headline": "Interesting. Nothing you can act on.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 3
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 2
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "Two cancelled. The others were pleasant.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 1
+          },
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "headline": "You spent four hours being told about other people's jobs.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "causeKnowledge",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    "signals": [
+      "slow_payoff"
+    ],
+    "tags": []
+  },
+  {
+    "id": "pub_write_technical_post",
+    "kind": "network_public",
+    "category": "network_public",
+    "title": "Publish something about what you actually know",
+    "description": "One piece, properly done, on the problem you have spent two years inside.",
+    "availability": {
+      "baseWeight": 1.1,
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      },
+      "requires": []
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 3
+    },
+    "expiry": {
+      "turns": 3
+    },
+    "check": {
+      "difficulty": 0.5,
+      "match": {
+        "capability.communication": 0.55,
+        "capability.technical": 0.3,
+        "reputation": 0.15
+      },
+      "fit": {
+        "communication": 0.8,
+        "deep_technical": 0.2
+      }
+    },
+    "delay": {
+      "1": 0.4,
+      "2": 0.4,
+      "3": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "It travelled further than anything you have written. Recruiters noticed.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 9
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 4
+          },
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "communication",
+            "strength": "notable"
+          }
+        ]
+      },
+      "success": {
+        "headline": "It was read by the people it was for.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 5
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "communication",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "Well received by four people, three of whom you know.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 2
+          },
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 1
+          }
+        ]
+      },
+      "failure": {
+        "headline": "You published it into silence.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 1
+          },
+          {
+            "op": "observeFit",
+            "axis": "communication",
+            "strength": "minor"
+          }
+        ]
+      }
+    },
+    "signals": [],
+    "tags": []
+  },
+  {
+    "id": "pub_speak_at_meetup",
+    "kind": "network_public",
+    "category": "network_public",
+    "title": "Give the talk",
+    "description": "Forty minutes in front of a hundred people who work on similar problems. You would have to write it first.",
+    "availability": {
+      "baseWeight": 0.8,
+      "requires": [
+        {
+          "path": "player.capital.reputation",
+          "op": ">=",
+          "value": 30
+        }
+      ],
+      "stages": [
+        "exploitation"
+      ],
+      "professions": [
+        "software_engineering"
+      ],
+      "seniority": {
+        "min": 0.0,
+        "max": 1.0
+      }
+    },
+    "cost": {
+      "shape": "fixed",
+      "base": 4
+    },
+    "expiry": {
+      "turns": 2
+    },
+    "check": {
+      "difficulty": 0.55,
+      "match": {
+        "capability.communication": 0.5,
+        "reputation": 0.25,
+        "evidence": 0.25
+      },
+      "fit": {
+        "communication": 0.9,
+        "leadership": 0.1
+      }
+    },
+    "delay": {
+      "1": 0.4,
+      "2": 0.4,
+      "3": 0.2
+    },
+    "outcomes": {
+      "strong": {
+        "headline": "People queued afterwards. Two of them wanted to talk about jobs.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 11
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 6
+          },
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 4
+          },
+          {
+            "op": "observeFit",
+            "axis": "communication",
+            "strength": "decisive"
+          }
+        ]
+      },
+      "success": {
+        "headline": "It went well. A handful of people found you afterwards.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 7
+          },
+          {
+            "op": "capital",
+            "target": "network",
+            "amount": 4
+          },
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 3
+          },
+          {
+            "op": "observeFit",
+            "axis": "communication",
+            "strength": "notable"
+          }
+        ]
+      },
+      "nearMiss": {
+        "headline": "The talk was fine and the room was half empty.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 3
+          },
+          {
+            "op": "capital",
+            "target": "reputation",
+            "amount": 2
+          }
+        ]
+      },
+      "failure": {
+        "headline": "You lost the room about ten minutes in and knew it.",
+        "effects": [
+          {
+            "op": "capital",
+            "target": "capability.communication",
+            "amount": 2
+          },
+          {
+            "op": "observeFit",
+            "axis": "communication",
+            "strength": "minor"
+          }
+        ]
+      }
+    },
+    "signals": [
+      "high_uncertainty"
+    ],
+    "tags": []
+  }
+]

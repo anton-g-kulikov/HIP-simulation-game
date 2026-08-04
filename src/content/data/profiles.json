@@ -1,0 +1,25 @@
+[
+  {
+    "id": "swe_bigtech_28",
+    "name": "Senior software engineer",
+    "profession": "software_engineering",
+    "blurb": "You are 28. You have been at a large technology company for four years, you are good at what you do, and you have started to wonder whether being good at this is the same thing as it mattering.",
+    "seniority": 0.55,
+    "role": {
+      "title": "Senior Engineer",
+      "org": "a large technology company",
+      "orgQuality": 0.65,
+      "managerQuality": 0.55
+    },
+    "capital": {
+      "capability": { "technical": 62, "execution": 55, "communication": 38, "leadership": 30 },
+      "evidence": 45,
+      "reputation": 18,
+      "network": 32,
+      "influence": 5,
+      "causeKnowledge": 5
+    },
+    "finance": { "monthlyComp": 14000, "monthlyBurn": 7500, "savings": 60000 },
+    "strongFitAxis": "deep_technical"
+  }
+]
