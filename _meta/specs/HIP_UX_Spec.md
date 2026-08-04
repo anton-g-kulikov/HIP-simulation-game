@@ -40,7 +40,26 @@ If a turn resolves nothing, the screen says so and moves on. It does not manufac
 
 ### 1.2 Allocate
 
-Top: a persistent **energy meter** — `7 of 10 remaining` — that updates live as allocations change, and turns amber when the last 2 Energy are committed.
+Top: a persistent **energy meter** — `7 of 10 remaining` — that updates live as allocations change.
+
+One pip per point of the budget, consumed from the left. Each pip carries the
+**zone** it sits in, so the cost of a full month is visible before any of it is
+paid:
+
+| Zone | Where | What it means |
+|---|---|---|
+| Steady | up to the point that still leaves 3 unused | The 1.5× cooldown bonus survives |
+| Stretch | the point that forfeits that bonus | Spending here costs the breather |
+| Hard | at and above the high-effort threshold | The month counts toward burnout |
+
+At a 10 budget those fall at 1–7, 8, and 9–10. **The boundaries are derived from
+the tuning, not chosen for looks** — a band that discriminates on the wrong point
+teaches a rule the game does not have, and an event-reduced month that cannot
+reach the burnout threshold correctly shows no hard zone at all.
+
+A month in the hard zone says so, flatly, and counts the run: "That would be
+three hard months in a row." Four in a row is what burnout accumulates against,
+so the run is worth knowing. It is stated once, without urgency (§18).
 
 Then, in fixed order:
 

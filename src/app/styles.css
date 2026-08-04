@@ -14,6 +14,7 @@
   --accent-soft: #eaf1ee;
   --warn: #8a5a20;
   --warn-soft: #f7efe2;
+  --danger: #9b3524;
   --radius: 10px;
   --pad: 16px;
 }
@@ -30,6 +31,7 @@
     --accent-soft: #21302b;
     --warn: #d3a05c;
     --warn-soft: #322a1d;
+    --danger: #d97364;
   }
 }
 
@@ -105,19 +107,51 @@ body {
   gap: 3px;
 }
 
+/*
+ * Every pip carries its zone, so the shape of the month is visible before any
+ * of it is committed. Available pips show the zone faintly; committing one
+ * brings it up to full. Boundaries come from the tuning — see energyZone().
+ */
 .energy-pip {
   flex: 1;
   height: 8px;
   border-radius: 2px;
+  background: var(--line);
 }
 
-.energy-pip.available {
+.energy-pip.available.steady {
   background: var(--accent);
 }
 
-/* Committed to something this month — spent, not warned about. */
+.energy-pip.available.stretch {
+  background: var(--warn);
+}
+
+.energy-pip.available.hard {
+  background: var(--danger);
+}
+
+/* Committed: the zone is still legible, but reads as spent rather than waiting. */
 .energy-pip.committed {
-  background: var(--line);
+  opacity: 0.28;
+}
+
+.energy-pip.committed.steady {
+  background: var(--accent);
+}
+
+.energy-pip.committed.stretch {
+  background: var(--warn);
+}
+
+.energy-pip.committed.hard {
+  background: var(--danger);
+}
+
+.energy-note {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--danger);
 }
 
 /* ------------------------------------------------------------------- cards */

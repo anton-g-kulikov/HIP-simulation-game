@@ -237,6 +237,76 @@ describe('the energy meter', () => {
     }
   })
 
+  it('16.5 gives every pip its zone, available ones included', () => {
+    skipIntro()
+    render(<App />)
+    const budget = useStore.getState().budget()
+
+    const zoned = document.querySelectorAll(
+      '.energy-pip.steady, .energy-pip.stretch, .energy-pip.hard',
+    )
+    expect(zoned).toHaveLength(budget)
+
+    // Boundaries follow the tuning: hard from the high-effort threshold up,
+    // one stretch pip where the rest bonus is forfeited.
+    const highEffort = useStore.getState().content.tuning.events.highEffortThreshold
+    expect(document.querySelectorAll('.energy-pip.hard')).toHaveLength(budget - highEffort + 1)
+    expect(document.querySelectorAll('.energy-pip.stretch').length).toBeGreaterThan(0)
+  })
+
+  it('16.5b consumes the cheap end of the budget first', () => {
+    // Counting pips is not enough: committing five of ten must light the first
+    // five, not the last five. An inverted mapping put the amber and red pips in
+    // the committed state while the player was nowhere near them.
+    skipIntro()
+    render(<App />)
+
+    spend(5)
+    const pips = [...document.querySelectorAll('.energy-pip')]
+    const committed = pips.filter((p) => p.classList.contains('committed'))
+
+    expect(committed).toHaveLength(5)
+    // The consumed pips are the leading ones, and all of them are steady.
+    expect(pips.slice(0, 5).every((p) => p.classList.contains('committed'))).toBe(true)
+    expect(committed.every((p) => p.classList.contains('steady'))).toBe(true)
+    // Nothing in the hard zone has been touched yet.
+    expect(
+      pips.filter((p) => p.classList.contains('hard')).every((p) => p.classList.contains('available')),
+    ).toBe(true)
+  })
+
+  it('16.6 says so once a commitment reaches the hard zone, and not before', () => {
+    skipIntro()
+    render(<App />)
+    const highEffort = useStore.getState().content.tuning.events.highEffortThreshold
+
+    spend(highEffort - 1)
+    expect(document.querySelector('.energy-note')).toBeNull()
+
+    spend(highEffort)
+    expect(document.querySelector('.energy-note')?.textContent).toMatch(/hard going/i)
+  })
+
+  it('16.6b counts the run when hard months are already behind you', () => {
+    skipIntro()
+    const state = useStore.getState().state
+    const highEffort = useStore.getState().content.tuning.events.highEffortThreshold
+    // Two hard months already on the record.
+    useStore.setState({
+      state: {
+        ...state,
+        history: [
+          { ...(state.history[0] ?? ({} as never)), energySpent: highEffort, turn: 1 },
+          { ...(state.history[0] ?? ({} as never)), energySpent: highEffort, turn: 2 },
+        ] as never,
+      },
+    })
+    render(<App />)
+
+    spend(highEffort)
+    expect(document.querySelector('.energy-note')?.textContent).toMatch(/3 hard months in a row/i)
+  })
+
   it('15.1 and 15.3 keep every pip in exactly one of two states', () => {
     skipIntro()
     render(<App />)

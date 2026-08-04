@@ -1,5 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import {
+  energyZone,
+  highEffortStreak,
   repetitionMultiplier,
   inflatedCost,
   raiseHeat,
@@ -101,5 +103,59 @@ describe('energy — budget', () => {
     // out-of-range modifiers are clamped, not honoured
     expect(effectiveBudget(-99)).toBe(6)
     expect(effectiveBudget(99)).toBe(12)
+  })
+})
+
+// Test intent: test/test-documentation.md, M4f (16.1–16.4)
+
+describe('energy — zones', () => {
+  const HIGH_EFFORT = 9
+  const BUDGET = 10
+
+  it('16.1 starts the hard zone at the high-effort threshold', () => {
+    expect(energyZone(9, BUDGET, HIGH_EFFORT)).toBe('hard')
+    expect(energyZone(10, BUDGET, HIGH_EFFORT)).toBe('hard')
+    expect(energyZone(8, BUDGET, HIGH_EFFORT)).not.toBe('hard')
+  })
+
+  it('16.2 marks the point that forfeits the rest bonus as a stretch', () => {
+    // Leaving three unused earns the cooldown bonus, so spending the eighth
+    // point is where it is given up.
+    expect(energyZone(8, BUDGET, HIGH_EFFORT)).toBe('stretch')
+  })
+
+  it('16.3 treats everything that keeps the rest bonus as steady', () => {
+    for (const point of [1, 2, 3, 4, 5, 6, 7]) {
+      expect(energyZone(point, BUDGET, HIGH_EFFORT), `point ${point}`).toBe('steady')
+    }
+  })
+
+  it('16.4 has no hard zone when the budget cannot reach the threshold', () => {
+    // An event-reduced month cannot trigger burnout, so it must not warn about it.
+    const reduced = 8
+    for (let point = 1; point <= reduced; point++) {
+      expect(energyZone(point, reduced, HIGH_EFFORT), `point ${point}`).not.toBe('hard')
+    }
+  })
+
+  it('16.4b still marks the stretch in a reduced budget', () => {
+    expect(energyZone(6, 8, 9)).toBe('stretch')
+    expect(energyZone(5, 8, 9)).toBe('steady')
+  })
+})
+
+describe('energy — high-effort streak', () => {
+  const record = (energySpent: number) => ({ energySpent }) as never
+
+  it('counts consecutive hard months, most recent first', () => {
+    expect(highEffortStreak([record(9), record(10), record(9)], 9)).toBe(3)
+  })
+
+  it('resets on a month below the threshold', () => {
+    expect(highEffortStreak([record(10), record(4), record(9)], 9)).toBe(1)
+  })
+
+  it('is zero with no history', () => {
+    expect(highEffortStreak([], 9)).toBe(0)
   })
 })

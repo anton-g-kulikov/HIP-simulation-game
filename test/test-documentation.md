@@ -237,6 +237,23 @@ pips and slid left as energy was committed, filling the gap it left behind.
 | 15.4 | Committing one point moves exactly one pip | Including the first one |
 | 15.5 | An untouched budget reads as entirely available | — |
 
+## M4f — Energy zones
+
+The meter is colour-zoned so the cost of a full month is visible before it is
+paid. Boundaries are derived from the mechanics, not chosen for looks: spending
+at or above the high-effort threshold marks a month as hard going and counts
+toward burnout, and spending past the point that leaves three energy unused
+forfeits the cooldown bonus.
+
+| # | Case | Expectation |
+|---|---|---|
+| 16.1 | The hard zone begins at the high-effort threshold | Not at an arbitrary position |
+| 16.2 | The pip that forfeits the rest bonus is the stretch zone | Derived from the rest threshold |
+| 16.3 | Everything below that is steady | — |
+| 16.4 | A budget too small to reach the threshold has no hard zone | An event-reduced month cannot cause burnout, so it must not warn |
+| 16.5 | Every pip carries its zone | Available pips too, so the shape is visible before spending |
+| 16.6 | A hard month says so, and counts the run | Factual, and only while the commitment is in that zone |
+
 ## M6 — Balance harness
 
 | # | Case | Expectation |

@@ -5,7 +5,15 @@
 
 export { createCampaign, isCampaignComplete } from './campaign'
 export { openTurn, commitAllocation, describeOffer, describeOffers } from './turn'
-export { effectiveBudget, inflatedCost, repetitionMultiplier, ACTION_CATEGORIES } from './energy'
+export {
+  effectiveBudget,
+  inflatedCost,
+  repetitionMultiplier,
+  energyZone,
+  highEffortStreak,
+  ACTION_CATEGORIES,
+} from './energy'
+export type { EnergyZone } from './energy'
 export { runwayMonths, capitalMovement, notableMovement, CAPITAL_LABELS } from './capital'
 export { describeAllFit, FIT_AXES } from './fit'
 export { describeMarket } from './market'

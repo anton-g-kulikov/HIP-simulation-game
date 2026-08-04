@@ -90,3 +90,47 @@ export function coolDown(
 export function effectiveBudget(energyModifier: number): number {
   return BASE_ENERGY + clamp(energyModifier, ENERGY_MODIFIER_MIN, ENERGY_MODIFIER_MAX)
 }
+
+/**
+ * How costly a given point of the month's budget is to spend.
+ *
+ * `steady`   — the rest bonus survives; the month stays sustainable.
+ * `stretch`  — spending this point forfeits the cooldown bonus that comes from
+ *              leaving energy unused.
+ * `hard`     — this month counts as high effort, and a run of them invites
+ *              burnout.
+ *
+ * Derived from the thresholds rather than chosen for looks. A colour that
+ * discriminates on the wrong boundary teaches a rule the game does not have —
+ * so if the tuning moves, the zones move with it.
+ *
+ * `pointOfBudget` is 1-based: point 1 is the first energy committed.
+ */
+export type EnergyZone = 'steady' | 'stretch' | 'hard'
+
+export function energyZone(
+  pointOfBudget: number,
+  budget: number,
+  highEffortThreshold: number,
+): EnergyZone {
+  if (pointOfBudget >= highEffortThreshold) return 'hard'
+  // Below this many unused, the 1.5x cooldown bonus is gone.
+  if (budget - pointOfBudget < REST_THRESHOLD) return 'stretch'
+  return 'steady'
+}
+
+/**
+ * Consecutive months at or above the high-effort threshold, counting back from
+ * the most recent. This is what burnout accumulates against.
+ */
+export function highEffortStreak(
+  history: readonly { energySpent: number }[],
+  highEffortThreshold: number,
+): number {
+  let streak = 0
+  for (let i = history.length - 1; i >= 0; i--) {
+    if ((history[i]?.energySpent ?? 0) < highEffortThreshold) break
+    streak++
+  }
+  return streak
+}
