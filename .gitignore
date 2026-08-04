@@ -1,0 +1,18 @@
+# metacoding: AI coding assistant exclusions
+.codex/skills/metacoding-workflow/
+.claude/agents/metacoding-workflow.md
+.claude/metacoding-workflow/
+.agents/skills/metacoding-workflow/
+.backup/
+
+# Build and dependency artifacts
+node_modules/
+dist/
+coverage/
+*.local
+
+# OS
+.DS_Store
+
+# Playtest session exports (local-only, never committed)
+playtest-sessions/
