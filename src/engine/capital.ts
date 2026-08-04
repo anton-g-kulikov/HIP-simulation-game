@@ -14,7 +14,15 @@ import {
   LIFESTYLE_INFLATION_SHARE,
   MAX_RUNWAY_MONTHS,
 } from './tuning'
-import type { CapabilityKey, CapitalPath, CapitalState, FinanceState, MatchWeights } from './types'
+import type {
+  CampaignState,
+  CapabilityKey,
+  CapitalMovement,
+  CapitalPath,
+  CapitalState,
+  FinanceState,
+  MatchWeights,
+} from './types'
 import { assertWeightsSumToOne, clamp } from './util'
 
 export const CAPABILITY_KEYS: readonly CapabilityKey[] = [
@@ -111,4 +119,94 @@ export function applyRaise(finance: FinanceState, newMonthlyComp: number): Finan
   const burn =
     delta > 0 ? finance.monthlyBurn + delta * LIFESTYLE_INFLATION_SHARE : finance.monthlyBurn
   return { ...finance, monthlyComp: newMonthlyComp, monthlyBurn: burn }
+}
+
+/** Short nouns for a bar row. The sentences carry the tone. */
+export const CAPITAL_LABELS: Record<CapitalPath, string> = {
+  'capability.technical': 'Technical depth',
+  'capability.execution': 'Execution',
+  'capability.communication': 'Communication',
+  'capability.leadership': 'Leading',
+  evidence: 'Record of results',
+  reputation: 'Reputation',
+  network: 'Network',
+  influence: 'Influence',
+  causeKnowledge: 'Understanding',
+}
+
+export const CAPITAL_PATHS: readonly CapitalPath[] = [
+  'capability.technical',
+  'capability.execution',
+  'capability.communication',
+  'capability.leadership',
+  'evidence',
+  'reputation',
+  'network',
+]
+
+/**
+ * Below this a move is not worth drawing.
+ *
+ * Capability drifts 0.1 a month from disuse. Drawing that put a floor-width
+ * tick on all seven bars every idle month, which read as everything falling
+ * apart and made a genuine one-point gain indistinguishable from noise. The
+ * dimensions that erode meaningfully — reputation at 0.6 a month, network at
+ * 0.4 — still show.
+ */
+const NOTICEABLE = 0.25
+
+/** Below this a move is not worth a sentence, only a bar. */
+const WORTH_SAYING = 1
+
+/**
+ * What the player's last month did to them.
+ *
+ * Compares this month's opening capital with the previous month's, so it covers
+ * everything that landed in between — resolutions, events, recognition and the
+ * ordinary erosion of not maintaining something.
+ */
+export function capitalMovement(state: CampaignState): CapitalMovement[] {
+  const moves: CapitalMovement[] = []
+
+  for (const path of CAPITAL_PATHS) {
+    const before = readCapital(state.capitalAtPreviousOpen, path)
+    const after = readCapital(state.capitalAtOpen, path)
+    if (Math.abs(after - before) < NOTICEABLE) continue
+
+    moves.push({
+      path,
+      label: CAPITAL_LABELS[path],
+      phrase: MOVEMENT_PHRASES[path][after > before ? 'up' : 'down'],
+      before,
+      after,
+    })
+  }
+
+  return moves
+}
+
+/**
+ * The handful of moves worth putting in a sentence.
+ *
+ * A month of ordinary erosion should not produce a paragraph of bad news: the
+ * bars already carry it. Only moves big enough to be worth remarking on get
+ * words, largest first, and never more than three.
+ */
+export function notableMovement(state: CampaignState): CapitalMovement[] {
+  return capitalMovement(state)
+    .filter((m) => Math.abs(m.after - m.before) >= WORTH_SAYING)
+    .sort((a, b) => Math.abs(b.after - b.before) - Math.abs(a.after - a.before))
+    .slice(0, 3)
+}
+
+const MOVEMENT_PHRASES: Record<CapitalPath, { up: string; down: string }> = {
+  'capability.technical': { up: 'Deeper technically', down: 'A little rustier technically' },
+  'capability.execution': { up: 'Getting more done', down: 'Getting less done' },
+  'capability.communication': { up: 'Explaining yourself better', down: 'Out of practice explaining' },
+  'capability.leadership': { up: 'More comfortable leading', down: 'Less chance to lead' },
+  evidence: { up: 'More to point at', down: 'Less to point at' },
+  reputation: { up: 'Better known', down: 'Slipping out of view' },
+  network: { up: 'Better connected', down: 'Connections going cold' },
+  influence: { up: 'More say in things', down: 'Less say in things' },
+  causeKnowledge: { up: 'Understanding more', down: 'Falling behind' },
 }

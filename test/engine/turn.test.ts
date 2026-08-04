@@ -187,7 +187,9 @@ describe('turn — pending effects', () => {
       for (const outcome of state.currentOutcomes) {
         expect(outcome.explanation).toBeDefined()
         expect(outcome.headline.length).toBeGreaterThan(0)
-        expect(outcome.changes.length).toBeGreaterThan(0)
+        // A card must report something it changed — as a drawn capital move, as
+        // a text note, or as the explicit "nothing measurable changed".
+        expect(outcome.capitalChanges.length + outcome.changes.length).toBeGreaterThan(0)
       }
     }
   })

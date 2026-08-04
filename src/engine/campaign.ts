@@ -44,6 +44,15 @@ export function createCampaign(content: Content, profileId: string, seed: number
   // does not silently reroll who the player is.
   const hiddenFit = rollFitFor(profile.strongFitAxis, seed ^ 0x5f3759df)
 
+  const startingCapital = {
+    capability: { ...profile.capital.capability },
+    evidence: profile.capital.evidence,
+    reputation: profile.capital.reputation,
+    network: profile.capital.network,
+    influence: profile.capital.influence,
+    causeKnowledge: profile.capital.causeKnowledge,
+  }
+
   return {
     saveVersion: SAVE_VERSION,
     seed,
@@ -57,14 +66,7 @@ export function createCampaign(content: Content, profileId: string, seed: number
       profileId,
       role: { ...profile.role },
       seniority: profile.seniority,
-      capital: {
-        capability: { ...profile.capital.capability },
-        evidence: profile.capital.evidence,
-        reputation: profile.capital.reputation,
-        network: profile.capital.network,
-        influence: profile.capital.influence,
-        causeKnowledge: profile.capital.causeKnowledge,
-      },
+      capital: startingCapital,
       finance: { ...profile.finance },
       hiddenFit,
       fitObservations: emptyObservations(),
@@ -84,6 +86,8 @@ export function createCampaign(content: Content, profileId: string, seed: number
     unlockedTemplateIds: [],
     history: [],
     openedTurn: 0,
+    capitalAtOpen: startingCapital,
+    capitalAtPreviousOpen: startingCapital,
   }
 }
 

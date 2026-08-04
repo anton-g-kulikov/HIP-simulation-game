@@ -11,7 +11,7 @@ import type { EventTemplate } from '@content/schema'
 import { applyEffects } from './effects'
 import { allPredicatesPass } from './paths'
 import type { Rng } from './rng'
-import type { CampaignState } from './types'
+import type { CampaignState, CapitalChange } from './types'
 
 function consecutiveHighEffortTurns(state: CampaignState, threshold: number): number {
   let count = 0
@@ -49,11 +49,12 @@ export type EventRollResult = {
   state: CampaignState
   event?: EventTemplate
   changes: string[]
+  capitalChanges: CapitalChange[]
 }
 
 export function rollEvent(state: CampaignState, content: Content, rng: Rng): EventRollResult {
   const candidates = eligibleEvents(state, content)
-  if (candidates.length === 0) return { state, changes: [] }
+  if (candidates.length === 0) return { state, changes: [], capitalChanges: [] }
 
   const event = rng.pick(candidates, (e) => e.trigger.weight)
 
@@ -77,6 +78,7 @@ export function rollEvent(state: CampaignState, content: Content, rng: Rng): Eve
     },
     event,
     changes: applied.changes,
+    capitalChanges: applied.capitalChanges,
   }
 }
 

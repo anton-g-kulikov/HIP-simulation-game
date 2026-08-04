@@ -185,6 +185,8 @@ export type OfferView = {
   offer: Offer
   title: string
   description: string
+  /** What the button offers to do — the effort, never the result. */
+  actionVerb: string
   /** Cost after repetition inflation. */
   cost: number
   /** Present only when repetition raised the cost above base. */
@@ -244,6 +246,26 @@ export type PendingEffect = {
  */
 export type OutcomeKind = 'result' | 'event' | 'recognition' | 'lapse'
 
+/**
+ * A move on one 0–100 capital dimension, with both ends of it.
+ *
+ * The UI draws this rather than only printing the sentence: the game already
+ * uses bars for these values in the career snapshot, and a player should be
+ * able to see the size of a change without parsing prose for it.
+ */
+export type CapitalChange = {
+  path: CapitalPath
+  /** Short noun for the row, e.g. "Record of results". */
+  label: string
+  /** The full sentence, e.g. "Your record of results got stronger." */
+  phrase: string
+  before: number
+  after: number
+}
+
+/** The same shape, describing a month rather than a single outcome. */
+export type CapitalMovement = CapitalChange
+
 export type OutcomeCard = {
   id: string
   kind: OutcomeKind
@@ -254,6 +276,9 @@ export type OutcomeCard = {
   band: ResultBand
   headline: string
   explanation: Explanation
+  /** Capital moves, drawn as bars. */
+  capitalChanges: CapitalChange[]
+  /** Everything else — money, role, energy — which has no bar to draw. */
   changes: string[]
 }
 
@@ -316,4 +341,15 @@ export type CampaignState = {
   history: TurnRecord[]
   /** Set when the last turn was opened, so openTurn is idempotent. */
   openedTurn: number
+
+  /**
+   * Capital as it stood when this month opened, and when the previous one did.
+   *
+   * The difference is what the player's last month did to them, which the
+   * career snapshot shows every round. Held in campaign state rather than
+   * computed in the view so it survives a save and cannot drift from the
+   * history it describes.
+   */
+  capitalAtOpen: CapitalState
+  capitalAtPreviousOpen: CapitalState
 }

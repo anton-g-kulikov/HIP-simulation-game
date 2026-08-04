@@ -93,6 +93,11 @@ function resolvePending(
     current = structural.state
     changes.push(...structural.changes)
 
+    // The sentence for a capital move is shown beside its bar, so it must not
+    // also appear in the plain text list.
+    const spokenForByBars = new Set(applied.capitalChanges.map((c) => c.phrase))
+    const textChanges = changes.filter((c) => !spokenForByBars.has(c))
+
     outcomes.push({
       id: pending.id,
       kind: 'result',
@@ -103,7 +108,11 @@ function resolvePending(
       band: pending.result.band,
       headline: pending.headline,
       explanation: pending.result.explanation,
-      changes: changes.length > 0 ? changes : ['Nothing measurable changed.'],
+      capitalChanges: applied.capitalChanges,
+      changes:
+        textChanges.length > 0 || applied.capitalChanges.length > 0
+          ? textChanges
+          : ['Nothing measurable changed.'],
     })
   }
 
@@ -262,7 +271,10 @@ function checkRecognition(
       band: 'success',
       headline: content.tuning.employer.recognitionHeadline,
       explanation: { contributors: [], luck: 'as expected' },
-      changes: applied.changes,
+      capitalChanges: applied.capitalChanges,
+      changes: applied.changes.filter(
+        (c) => !applied.capitalChanges.some((m) => m.phrase === c),
+      ),
     },
   }
 }
@@ -332,7 +344,11 @@ export function openTurn(state: CampaignState, content: Content): CampaignState 
       band: 'success',
       headline: event.event.narrative.headline,
       explanation: { contributors: [], luck: 'as expected' },
-      changes: event.changes.length > 0 ? event.changes : [event.event.narrative.body],
+      capitalChanges: event.capitalChanges,
+      changes:
+        event.changes.length > 0 || event.capitalChanges.length > 0
+          ? event.changes.filter((c) => !event.capitalChanges.some((m) => m.phrase === c))
+          : [event.event.narrative.body],
     })
   }
 
@@ -350,6 +366,7 @@ export function openTurn(state: CampaignState, content: Content): CampaignState 
       band: 'failure',
       headline: 'That process went quiet while you were doing other things.',
       explanation: { contributors: [], luck: 'as expected' },
+      capitalChanges: [],
       changes: ['One option closed itself.'],
     })
   }
@@ -363,6 +380,10 @@ export function openTurn(state: CampaignState, content: Content): CampaignState 
     currentOutcomes: outcomes,
     openedTurn: current.turn,
     rngCursor: rng.cursor(),
+    // Roll the two reference points forward exactly once per opened month, so
+    // the snapshot shows what the last month did rather than the whole campaign.
+    capitalAtPreviousOpen: state.capitalAtOpen,
+    capitalAtOpen: current.player.capital,
   }
 }
 
@@ -629,6 +650,9 @@ export function describeOffer(state: CampaignState, offer: Offer, content: Conte
   const view: OfferView = {
     offer,
     title,
+    actionVerb: isAcceptance
+      ? content.tuning.hiring.acceptVerb
+      : (stageConfig?.verb ?? template.actionVerb),
     description: isAcceptance
       ? 'They made you an offer. Taking it means starting again somewhere new.'
       : template.description,

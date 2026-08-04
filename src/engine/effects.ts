@@ -11,7 +11,8 @@ import type { GameTuning } from '@content/schema'
 import { gainCapital, applyRaise } from './capital'
 import { recordObservation } from './fit'
 import { clamp } from './util'
-import type { CampaignState, Effect } from './types'
+import { readCapital } from './capital'
+import type { CampaignState, CapitalChange, CapitalPath, Effect } from './types'
 
 export type EffectContext = {
   turn: number
@@ -21,7 +22,15 @@ export type EffectContext = {
 
 export type EffectOutcome = {
   state: CampaignState
+  /** Non-capital notes: money, role, energy. Nothing here has a bar. */
   changes: string[]
+  /** Capital moves, one per dimension, spanning the whole move. */
+  capitalChanges: CapitalChange[]
+}
+
+/** Only the capital branch reports a move, so the rest may omit it. */
+type SingleEffectOutcome = Omit<EffectOutcome, 'capitalChanges'> & {
+  capitalChanges?: CapitalChange[]
 }
 
 const CAPITAL_PHRASES: Record<string, { up: string; down: string }> = {
@@ -57,6 +66,19 @@ const CAPITAL_PHRASES: Record<string, { up: string; down: string }> = {
   },
 }
 
+/** Short nouns for the bar rows. The sentences above carry the tone. */
+const CAPITAL_LABELS: Record<string, string> = {
+  'capability.technical': 'Technical depth',
+  'capability.execution': 'Execution',
+  'capability.communication': 'Communication',
+  'capability.leadership': 'Leading',
+  evidence: 'Record of results',
+  reputation: 'Reputation',
+  network: 'Network',
+  influence: 'Influence',
+  causeKnowledge: 'Understanding',
+}
+
 function formatMoney(amount: number): string {
   return Math.round(amount).toLocaleString('en-US')
 }
@@ -77,18 +99,40 @@ export function applyEffect(
   state: CampaignState,
   effect: Effect,
   context: EffectContext,
-): EffectOutcome {
+): SingleEffectOutcome {
   const player = state.player
   const changes: string[] = []
 
   switch (effect.op) {
     case 'capital': {
       const amount = effect.amount * rampFactor(state, effect.target, context.tuning)
-      if (amount === 0) return { state, changes }
+      if (amount === 0) return { state, changes, capitalChanges: [] }
+
+      const before = readCapital(player.capital, effect.target)
       const capital = gainCapital(player.capital, effect.target, amount)
+      const after = readCapital(capital, effect.target)
+
+      // A dimension already at its floor or ceiling did not move, and drawing a
+      // bar for it would report a change that did not happen.
+      if (after === before) return { state, changes, capitalChanges: [] }
+
       const phrase = CAPITAL_PHRASES[effect.target]
-      if (phrase) changes.push(amount > 0 ? phrase.up : phrase.down)
-      return { state: { ...state, player: { ...player, capital } }, changes }
+      const sentence = phrase ? (after > before ? phrase.up : phrase.down) : ''
+      if (sentence) changes.push(sentence)
+
+      return {
+        state: { ...state, player: { ...player, capital } },
+        changes,
+        capitalChanges: [
+          {
+            path: effect.target,
+            label: CAPITAL_LABELS[effect.target] ?? effect.target,
+            phrase: sentence,
+            before,
+            after,
+          },
+        ],
+      }
     }
 
     case 'finance': {
@@ -166,7 +210,7 @@ export function applyEffect(
     }
 
     case 'unlock': {
-      if (state.unlockedTemplateIds.includes(effect.template)) return { state, changes }
+      if (state.unlockedTemplateIds.includes(effect.template)) return { state, changes, capitalChanges: [] }
       changes.push('Something new opened up.')
       return {
         state: { ...state, unlockedTemplateIds: [...state.unlockedTemplateIds, effect.template] },
@@ -192,7 +236,7 @@ export function applyEffect(
 
     case 'visibleWork': {
       const pipeline = state.pipelines.find((p) => p.kind === 'employer')
-      if (!pipeline) return { state, changes }
+      if (!pipeline) return { state, changes, capitalChanges: [] }
       const visibility =
         context.tuning.employer.visibilityBase +
         context.tuning.employer.visibilityFromManager * player.role.managerQuality
@@ -237,7 +281,7 @@ export function applyEffect(
           changes,
         }
       }
-      return { state, changes }
+      return { state, changes, capitalChanges: [] }
     }
   }
 }
@@ -249,10 +293,23 @@ export function applyEffects(
 ): EffectOutcome {
   let current = state
   const changes: string[] = []
+  // Keyed by dimension so several effects on one value become a single row
+  // spanning the whole move, rather than a stack of overlapping bars.
+  const moves = new Map<CapitalPath, CapitalChange>()
+
   for (const effect of effects) {
     const result = applyEffect(current, effect, context)
     current = result.state
     changes.push(...result.changes)
+
+    for (const move of result.capitalChanges ?? []) {
+      const existing = moves.get(move.path)
+      moves.set(move.path, existing ? { ...move, before: existing.before } : move)
+    }
   }
-  return { state: current, changes: [...new Set(changes)] }
+
+  // A dimension pushed up and then back down has not moved at all.
+  const capitalChanges = [...moves.values()].filter((m) => m.after !== m.before)
+
+  return { state: current, changes: [...new Set(changes)], capitalChanges }
 }
