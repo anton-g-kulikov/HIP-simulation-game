@@ -353,6 +353,36 @@ describe('the outcome card', () => {
     render(<App />)
   }
 
+  it('13.11 leads with the decision the result came from', () => {
+    // The link from an earlier choice to a later consequence is the mechanic
+    // the prototype tests. It must be the first thing on the card, not a
+    // caption under the headline.
+    renderCard()
+
+    const card = document.querySelector('.card')!
+    const from = card.querySelector('.outcome-from')!
+    const headline = card.querySelector('.outcome-headline')!
+
+    expect(from).toBeTruthy()
+    expect(from.textContent).toContain('Get better at writing things down')
+    expect(from.textContent).toMatch(/3 months ago/)
+
+    // Source precedes both the band and the headline in reading order.
+    const order = [...card.children].map((el) => el.className)
+    expect(order.indexOf('outcome-from')).toBeLessThan(
+      order.findIndex((c) => c.startsWith('band')),
+    )
+    expect(card.compareDocumentPosition(headline) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(from.compareDocumentPosition(headline) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
+  it('13.11b keeps the headline as the lead when there is no earlier decision', () => {
+    renderCard({ kind: 'event', sourceTitle: 'Out of your hands', turnsAgo: 0, band: 'success' })
+    const card = document.querySelector('.card')!
+    expect(card.querySelector('.outcome-from')).toBeNull()
+    expect(card.querySelector('.outcome-headline')).toBeTruthy()
+  })
+
   it('13.1 gives each causal factor its own row with an explicit state', () => {
     renderCard()
 

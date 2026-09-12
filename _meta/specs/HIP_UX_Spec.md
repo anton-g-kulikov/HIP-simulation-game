@@ -27,8 +27,8 @@ Turn 1 skips Review — there is nothing to review — and opens on a short prof
 
 One outcome card per resolved effect, in a vertical stack, most consequential first. Each card shows, in this order:
 
-1. **What happened.** One sentence, plain.
-2. **What it came from.** "From: applied to the platform role, three months ago." The turn distance is stated explicitly; it is the whole point of the mechanic.
+1. **What it came from.** The decision is the card's subject — its title — with the turn distance above it: "From 3 months ago / Get better at writing things down." This leads because the link between an earlier choice and a later consequence is the mechanic the prototype exists to test; an earlier layout put it as a caption under the headline, where the eye skipped it.
+2. **What happened.** The result band, then one plain sentence — the body of the card, not its title.
 3. **Why.** Up to three contributors plus luck, as **one row each** with an explicit state — `helped` or `held you back`, colour-coded — not as a sentence. As prose these read badly and scan worse: "How well this suits you worked against you" is three clauses to say one thing. Each factor is one claim with one direction, so it looks like one.
 4. **What changed.** Capital moves are **drawn**, using the same bar idiom as the career snapshot: the track is the dimension's 0–100 range, the quiet part is where the value already sat, and the coloured part is this month's move — green up, amber down. The sentence sits above its bar.
 

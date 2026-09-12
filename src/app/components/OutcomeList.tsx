@@ -113,20 +113,29 @@ export function OutcomeList({
       {outcomes.map((outcome) => {
         const factors = factorsOf(outcome.explanation)
 
+        const fromDecision = Boolean(outcome.sourceTitle) && outcome.turnsAgo > 0
+
         return (
           <div className="card" key={outcome.id}>
+            {/* The decision this came from leads the card. The link between an
+                earlier choice and a later consequence is the mechanic the
+                prototype exists to test, so it is the subject of the card and
+                the headline is what happened to it — not the other way round. */}
+            {fromDecision && (
+              <div className="outcome-from">
+                <span className="outcome-from-when">From {monthsAgo(outcome.turnsAgo)}</span>
+                <div className="outcome-from-title">{outcome.sourceTitle}</div>
+              </div>
+            )}
+
             {/* Only results get a success band. An event is not something the
                 player earned, and labelling it "Close" would be nonsense. */}
             <span className={`band ${outcome.kind === 'result' ? outcome.band : outcome.kind}`}>
               {outcome.kind === 'result' ? BAND_LABEL[outcome.band] : KIND_LABEL[outcome.kind]}
             </span>
-            <div className="card-title">{outcome.headline}</div>
-
-            {outcome.sourceTitle && outcome.turnsAgo > 0 && (
-              <div className="outcome-source">
-                From: {outcome.sourceTitle}, {monthsAgo(outcome.turnsAgo)}.
-              </div>
-            )}
+            <div className={fromDecision ? 'outcome-headline' : 'card-title outcome-headline'}>
+              {outcome.headline}
+            </div>
 
             {factors.length > 0 && (
               <ul className="factors">

@@ -312,10 +312,37 @@ button.link {
 
 /* ---------------------------------------------------------------- outcomes */
 
-.outcome-source {
-  font-size: 13px;
+/* The decision a result came from leads the card; see OutcomeList. */
+.outcome-from {
+  margin-bottom: 10px;
+}
+
+.outcome-from-when {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--ink-faint);
-  margin-top: 8px;
+  margin-bottom: 2px;
+}
+
+.outcome-from-title {
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+/* What happened to it: the body of the card, not its title. */
+.outcome-headline {
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.outcome-headline.card-title {
+  margin-top: 0;
+  font-size: inherit;
 }
 
 .outcome-why {
