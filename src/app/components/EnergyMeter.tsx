@@ -9,12 +9,17 @@ import { useStore } from '../store'
  * something this month. Every point committed takes one pip out of the
  * available run, including the first.
  *
- * Each pip also carries the zone it sits in, so the cost of a full month is
- * visible before it is paid: steady while the month stays sustainable, a
- * stretch at the point that forfeits the cooldown bonus, and hard where the
- * month starts counting toward burnout. The boundaries come from the tuning
- * rather than being chosen for looks — a band that discriminates on the wrong
- * point would teach a rule the game does not have.
+ * It reads like a fuel gauge. Full is every pip lit; each point committed puts
+ * out the rightmost lit pip, so the last point remaining is the leftmost one.
+ *
+ * Each pip carries the zone it would cost to spend *down to* it: steady while
+ * the month stays sustainable, a stretch at the point that forfeits the
+ * cooldown bonus, and hard where the month starts counting toward burnout.
+ * Because the gauge drains toward the left, that puts the warning colours on
+ * the reserve — the last pips you would burn — which is where a fuel gauge
+ * keeps its red. The boundaries come from the tuning rather than being chosen
+ * for looks; a band on the wrong point would teach a rule the game does not
+ * have.
  *
  * An earlier version painted a floating two-pip amber band that slid left as
  * energy was committed, filling the gap each commitment left behind, so the
@@ -29,7 +34,9 @@ export function EnergyMeter() {
 
   const remaining = budget - spent
   const highEffort = content.tuning.events.highEffortThreshold
-  const zoneOf = (point: number) => energyZone(point, budget, highEffort)
+  // Pip p is the (budget - p + 1)th point to be spent, so its zone is that
+  // point's zone: pip 1 is the very last point, and sits in the hard zone.
+  const zoneOfPip = (pip: number) => energyZone(budget - pip + 1, budget, highEffort)
 
   // Months already spent at this level, before whatever is being committed now.
   const streak = highEffortStreak(state.history, highEffort)
@@ -47,13 +54,11 @@ export function EnergyMeter() {
 
       <div className="energy-track" role="img" aria-label={`${remaining} of ${budget} energy left`}>
         {Array.from({ length: budget }, (_, i) => {
-          const point = i + 1
+          const pip = i + 1
           return (
             <span
               key={i}
-              // Consumed from the cheap end first: committing five of ten
-              // fills the first five, leaving the costly end ahead of you.
-              className={`energy-pip ${zoneOf(point)} ${point <= spent ? 'committed' : 'available'}`}
+              className={`energy-pip ${zoneOfPip(pip)} ${pip <= remaining ? 'available' : 'committed'}`}
             />
           )
         })}

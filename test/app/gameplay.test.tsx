@@ -254,25 +254,46 @@ describe('the energy meter', () => {
     expect(document.querySelectorAll('.energy-pip.stretch').length).toBeGreaterThan(0)
   })
 
-  it('16.5b consumes the cheap end of the budget first', () => {
-    // Counting pips is not enough: committing five of ten must light the first
-    // five, not the last five. An inverted mapping put the amber and red pips in
-    // the committed state while the player was nowhere near them.
+  it('16.5b drains from the right, leaving the reserve on the left', () => {
+    // A gauge reads toward empty. Full is all lit; each point spent puts out
+    // the rightmost lit pip, so the last point remaining is the leftmost one.
     skipIntro()
     render(<App />)
 
     spend(5)
     const pips = [...document.querySelectorAll('.energy-pip')]
-    const committed = pips.filter((p) => p.classList.contains('committed'))
+    const lit = pips.filter((p) => p.classList.contains('available'))
 
-    expect(committed).toHaveLength(5)
-    // The consumed pips are the leading ones, and all of them are steady.
-    expect(pips.slice(0, 5).every((p) => p.classList.contains('committed'))).toBe(true)
-    expect(committed.every((p) => p.classList.contains('steady'))).toBe(true)
-    // Nothing in the hard zone has been touched yet.
+    expect(lit).toHaveLength(5)
+    expect(pips.slice(0, 5).every((p) => p.classList.contains('available'))).toBe(true)
+    expect(pips.slice(5).every((p) => p.classList.contains('committed'))).toBe(true)
+  })
+
+  it('16.5c puts the hard zone at the empty end, like a fuel gauge', () => {
+    // The zones describe what it costs to spend *down to* a pip, so the
+    // reserve — the last points you would burn — carries the warning colours.
+    skipIntro()
+    render(<App />)
+    const budget = useStore.getState().budget()
+    const highEffort = useStore.getState().content.tuning.events.highEffortThreshold
+    const hardCount = budget - highEffort + 1
+
+    const pips = [...document.querySelectorAll('.energy-pip')]
+    expect(pips.slice(0, hardCount).every((p) => p.classList.contains('hard'))).toBe(true)
+    expect(pips[hardCount]!.classList.contains('stretch')).toBe(true)
+    expect(pips.slice(hardCount + 1).every((p) => p.classList.contains('steady'))).toBe(true)
+
+    // Spending five leaves the reserve untouched and lit.
+    spend(5)
     expect(
-      pips.filter((p) => p.classList.contains('hard')).every((p) => p.classList.contains('available')),
+      [...document.querySelectorAll('.energy-pip.hard')].every((p) => p.classList.contains('available')),
     ).toBe(true)
+
+    // Spending into the hard zone puts out all but the reserve.
+    spend(highEffort)
+    const stillLit = [...document.querySelectorAll('.energy-pip.available')]
+    expect(stillLit).toHaveLength(budget - highEffort)
+    expect(stillLit.every((p) => p.classList.contains('hard'))).toBe(true)
   })
 
   it('16.6 says so once a commitment reaches the hard zone, and not before', () => {

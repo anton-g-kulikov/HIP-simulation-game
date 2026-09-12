@@ -42,9 +42,12 @@ If a turn resolves nothing, the screen says so and moves on. It does not manufac
 
 Top: a persistent **energy meter** — `7 of 10 remaining` — that updates live as allocations change.
 
-One pip per point of the budget, consumed from the left. Each pip carries the
-**zone** it sits in, so the cost of a full month is visible before any of it is
-paid:
+One pip per point of the budget, and it reads like a fuel gauge: full is every
+pip lit, each point committed puts out the rightmost lit pip, and the last point
+remaining is the leftmost one. Each pip carries the **zone** it would cost to
+spend down to it, so the cost of a full month is visible before any of it is
+paid — and because the gauge drains toward the left, the warning colours sit on
+the reserve, which is where a fuel gauge keeps its red:
 
 | Zone | Where | What it means |
 |---|---|---|
@@ -52,7 +55,7 @@ paid:
 | Stretch | the point that forfeits that bonus | Spending here costs the breather |
 | Hard | at and above the high-effort threshold | The month counts toward burnout |
 
-At a 10 budget those fall at 1–7, 8, and 9–10. **The boundaries are derived from
+At a 10 budget that is, reading left to right, two red, one amber, seven green. **The boundaries are derived from
 the tuning, not chosen for looks** — a band that discriminates on the wrong point
 teaches a rule the game does not have, and an event-reduced month that cannot
 reach the burnout threshold correctly shows no hard zone at all.
