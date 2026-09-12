@@ -673,3 +673,35 @@ export function describeOffers(state: CampaignState, content: Content): OfferVie
   // Commitments first: they are obligations, not offers.
   return [...views.filter((v) => v.isCommitment), ...views.filter((v) => !v.isCommitment)]
 }
+
+// ---------------------------------------------------------------- in flight
+
+export type PendingView = {
+  /** The title the player chose it under. */
+  title: string
+  /** Vague on purpose — never a turn number. */
+  when: string
+}
+
+/**
+ * What the player is still waiting on, by name.
+ *
+ * The outcome is already rolled (ADR-005) and must not leak before its card,
+ * so this exposes exactly two things: the decision, which the player made and
+ * already knows, and a loose sense of when. A bare count — "one thing is
+ * waiting" — withheld the first of those for no reason.
+ */
+export function describePending(state: CampaignState): PendingView[] {
+  return [...state.pending]
+    .sort((a, b) => a.resolveOnTurn - b.resolveOnTurn)
+    .map((pending) => ({
+      title: pending.sourceTitle,
+      when: whenPhrase(pending.resolveOnTurn - state.turn),
+    }))
+}
+
+function whenPhrase(monthsAway: number): string {
+  if (monthsAway <= 1) return 'next month'
+  if (monthsAway === 2) return 'in a month or two'
+  return 'a few months out'
+}

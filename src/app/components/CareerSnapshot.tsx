@@ -1,6 +1,7 @@
 import {
   capitalMovement,
   notableMovement,
+  describePending,
   describeAllFit,
   describeMarket,
   runwayMonths,
@@ -66,6 +67,7 @@ export function CareerSnapshot() {
 
   const movement = capitalMovement(state)
   const notable = notableMovement(state)
+  const inFlight = describePending(state)
   const movementFor = (path: CapitalPath) => movement.find((m) => m.path === path)
 
   const rows: { path: CapitalPath; value: number }[] = [
@@ -119,13 +121,25 @@ export function CareerSnapshot() {
             <span className="muted">{summarisePipeline(pipeline, content)}</span>
           </p>
         ))}
-        <p className="muted snapshot-note" style={{ marginBottom: 0 }}>
-          {state.pending.length === 0
-            ? 'Nothing is waiting to come back.'
-            : state.pending.length === 1
-              ? 'One thing is still waiting to come back.'
-              : `${state.pending.length} things are still waiting to come back.`}
-        </p>
+        {/* Named, not counted. The player made these decisions; only the
+            outcome is theirs to wait for. */}
+        {inFlight.length === 0 ? (
+          <p className="muted snapshot-note" style={{ marginBottom: 0 }}>
+            Nothing is waiting to come back.
+          </p>
+        ) : (
+          <div className="snapshot-note" style={{ marginBottom: 0 }}>
+            <span className="muted">Waiting to come back</span>
+            <ul className="in-flight">
+              {inFlight.map((item, i) => (
+                <li key={`${item.title}-${i}`}>
+                  <span className="in-flight-title">{item.title}</span>
+                  <span className="in-flight-when">{item.when}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </>
   )

@@ -5,6 +5,7 @@ import {
   commitAllocation,
   isCampaignComplete,
   describeOffer,
+  describePending,
 } from '@engine/index'
 import { effectiveBudget } from '@engine/energy'
 import { testContent, TEST_IDS } from '../fixtures/content'
@@ -221,5 +222,64 @@ describe('turn — energy and repetition', () => {
       expect(rendered).not.toMatch(/\d+\s*%/)
       expect(rendered).not.toMatch(/probability/i)
     }
+  })
+})
+
+// Test intent: test/test-documentation.md, M4g (17.1–17.4)
+
+describe('turn — what is in flight', () => {
+  it('17.4 says nothing is pending when nothing is', () => {
+    expect(describePending(start(51))).toEqual([])
+  })
+
+  it('17.1 names each pending decision by the title it was chosen under', () => {
+    let state = start(52)
+    const offer = state.offers.find((o) => !o.pipelineId)!
+    state = commitAllocation(state, content, { [offer.id]: offer.minEnergy })
+
+    const pending = describePending(state)
+    expect(pending).toHaveLength(1)
+    expect(pending[0]!.title).toBe(content.opportunityById[offer.templateId]!.title)
+  })
+
+  it('17.2 gives a vague, non-numeric sense of when', () => {
+    let state = start(53)
+    const offer = state.offers.find((o) => !o.pipelineId)!
+    state = commitAllocation(state, content, { [offer.id]: offer.minEnergy })
+
+    for (const item of describePending(state)) {
+      expect(item.when).not.toMatch(/\d/)
+      expect(item.when.length).toBeGreaterThan(0)
+    }
+  })
+
+  it('17.2b phrases further-out resolutions as further out', () => {
+    let state = start(54)
+    const offer = state.offers.find((o) => !o.pipelineId)!
+    state = commitAllocation(state, content, { [offer.id]: offer.minEnergy })
+
+    const soon = describePending({
+      ...state,
+      pending: state.pending.map((p) => ({ ...p, resolveOnTurn: state.turn })),
+    })[0]!.when
+    const later = describePending({
+      ...state,
+      pending: state.pending.map((p) => ({ ...p, resolveOnTurn: state.turn + 3 })),
+    })[0]!.when
+
+    expect(soon).not.toBe(later)
+    expect(soon).toMatch(/next month/i)
+    expect(later).toMatch(/few months/i)
+  })
+
+  it('17.3 never reveals the rolled outcome', () => {
+    let state = start(55)
+    const offer = state.offers.find((o) => !o.pipelineId)!
+    state = commitAllocation(state, content, { [offer.id]: offer.minEnergy })
+
+    const item = describePending(state)[0]!
+    const exposed = JSON.stringify(item)
+    expect(exposed).not.toMatch(/band|roll|probability|strong|nearMiss|failure/)
+    expect(Object.keys(item).sort()).toEqual(['title', 'when'])
   })
 })

@@ -4,7 +4,8 @@
  */
 
 export { createCampaign, isCampaignComplete } from './campaign'
-export { openTurn, commitAllocation, describeOffer, describeOffers } from './turn'
+export { openTurn, commitAllocation, describeOffer, describeOffers, describePending } from './turn'
+export type { PendingView } from './turn'
 export {
   effectiveBudget,
   inflatedCost,

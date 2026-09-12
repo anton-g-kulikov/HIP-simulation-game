@@ -645,6 +645,26 @@ describe('layout', () => {
     expect(cards.some((c) => /hiring has cooled/i.test(c.textContent ?? ''))).toBe(true)
   })
 
+  it('17.5 names what is in flight instead of counting it', () => {
+    skipIntro()
+    let state = openTurn(createCampaign(content, 'swe_bigtech_28', 61), content)
+    const offer = state.offers.find((o) => !o.pipelineId)!
+    const title = content.opportunityById[offer.templateId]!.title
+    state = openTurn(commitAllocation(state, content, { [offer.id]: offer.minEnergy }), content)
+    // Force it to still be in flight regardless of the delay drawn.
+    state = { ...state, pending: state.pending.map((p) => ({ ...p, resolveOnTurn: state.turn + 2 })) }
+
+    useStore.setState({ state, screen: 'allocate' })
+    render(<App />)
+
+    const going = [...document.querySelectorAll('.card')].find((c) =>
+      /waiting to come back/i.test(c.textContent ?? ''),
+    )!
+    expect(going.textContent).toContain(title)
+    expect(going.textContent).not.toMatch(/one thing is still waiting/i)
+    expect(going.textContent).not.toMatch(/\d+ things are still waiting/i)
+  })
+
   it('14.9 shows where you stand and what is going, open, above the choices', () => {
     skipIntro()
     render(<App />)

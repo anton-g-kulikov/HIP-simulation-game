@@ -254,6 +254,20 @@ forfeits the cooldown bonus.
 | 16.5 | Every pip carries its zone | Available pips too, so the shape is visible before spending |
 | 16.6 | A hard month says so, and counts the run | Factual, and only while the commitment is in that zone |
 
+## M4g — Naming what is in flight
+
+"One thing is still waiting to come back" said that something was pending
+without saying what. The player made those decisions; withholding their names
+is not vagueness about the outcome, it is just confusion.
+
+| # | Case | Expectation |
+|---|---|---|
+| 17.1 | Each pending decision is named | By the title the player chose it under |
+| 17.2 | Timing is vague, not numeric | "next month", "a month or two", "a few months" — never a turn number |
+| 17.3 | The outcome is never revealed | The band is already rolled; it must not leak before the card |
+| 17.4 | Nothing pending says so plainly | — |
+| 17.5 | The snapshot lists them under what you have going | Replacing the bare count |
+
 ## M6 — Balance harness
 
 | # | Case | Expectation |

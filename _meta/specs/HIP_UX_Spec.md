@@ -64,7 +64,7 @@ so the run is worth knowing. It is stated once, without urgency (§18).
 Then, in fixed order:
 
 - **Where you stand** — the career snapshot, open, with last month's movement drawn on each bar.
-- **What you have going** — live pipelines, and how much is still in flight.
+- **What you have going** — live pipelines, and what is still in flight, **by name**. An earlier version showed only a count ("one thing is still waiting to come back"), which withheld information the player already had — they made those decisions. The outcome stays hidden until its card; the decision and a loose sense of when are theirs to see.
 - **Needs a decision** — in-flight pipelines wanting investment this turn. Obligations, not offers.
 - **This month** — the 4–7 drawn cards.
 
