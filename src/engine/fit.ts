@@ -86,21 +86,44 @@ function confidenceFor(observationCount: number): Confidence {
   return 'clear'
 }
 
-const PHRASES: Record<Exclude<Confidence, 'none'>, Record<'high' | 'low' | 'mixed', string>> = {
+/**
+ * What each axis is about, in the words a person would use.
+ *
+ * Every reading names its subject. The first version said "this" — "This may
+ * suit you" — on the assumption that it would sit on a card about a specific
+ * path. It never did: readings are only ever shown in the snapshot and the
+ * retrospective, side by side, where two of them read as one contradictory
+ * sentence.
+ */
+const SUBJECTS: Record<FitAxis, string> = {
+  deep_technical: 'deep technical work',
+  leadership: 'leading people',
+  research: 'research',
+  founding: 'building something of your own',
+  communication: 'explaining and persuading',
+  operations: 'making things run',
+}
+
+const capitalise = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+
+const PHRASES: Record<
+  Exclude<Confidence, 'none'>,
+  Record<'high' | 'low' | 'mixed', (subject: string) => string>
+> = {
   tentative: {
-    high: 'This may suit you.',
-    low: 'This may not suit you.',
-    mixed: 'It is not yet clear whether this suits you.',
+    high: (s) => `${capitalise(s)} may suit you.`,
+    low: (s) => `${capitalise(s)} may not suit you.`,
+    mixed: (s) => `Too early to say whether ${s} suits you.`,
   },
   moderate: {
-    high: 'This seems to suit you.',
-    low: 'This has been consistently hard going.',
-    mixed: 'The evidence about this is mixed.',
+    high: (s) => `${capitalise(s)} seems to suit you.`,
+    low: (s) => `${capitalise(s)} has been consistently hard going.`,
+    mixed: (s) => `The evidence on ${s} is mixed.`,
   },
   clear: {
-    high: 'This clearly plays to your strengths.',
-    low: 'This clearly does not play to your strengths.',
-    mixed: 'The evidence about this stays stubbornly mixed.',
+    high: (s) => `${capitalise(s)} clearly plays to your strengths.`,
+    low: (s) => `${capitalise(s)} clearly does not play to your strengths.`,
+    mixed: (s) => `The evidence on ${s} stays stubbornly mixed.`,
   },
 }
 
@@ -118,7 +141,7 @@ export function describeFit(
 
   const value = fit[axis]
   const tone = value > HIGH_FIT ? 'high' : value < LOW_FIT ? 'low' : 'mixed'
-  return PHRASES[confidence][tone]
+  return PHRASES[confidence][tone](SUBJECTS[axis])
 }
 
 /** Every axis the player has any read on, for the career snapshot. */

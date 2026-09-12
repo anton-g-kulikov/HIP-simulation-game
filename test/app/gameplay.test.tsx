@@ -686,6 +686,35 @@ describe('layout', () => {
     expect(going.textContent).not.toMatch(/\d+ things are still waiting/i)
   })
 
+  it('18.3 renders each fit reading on its own line, naming its subject', () => {
+    skipIntro()
+    const state = useStore.getState().state
+    // Enough observations on two different axes to earn a reading on each.
+    let obs = state.player.fitObservations
+    for (let n = 0; n < 3; n++) {
+      obs = { ...obs, leadership: [...obs.leadership, { turn: 1, strength: 'notable' as const }] }
+      obs = { ...obs, research: [...obs.research, { turn: 1, strength: 'notable' as const }] }
+    }
+    useStore.setState({
+      state: {
+        ...state,
+        player: {
+          ...state.player,
+          hiddenFit: { ...state.player.hiddenFit, leadership: 0.8, research: 0.5 },
+          fitObservations: obs,
+        },
+      },
+      screen: 'allocate',
+    })
+    render(<App />)
+
+    const items = [...document.querySelectorAll('.fit-readings li')].map((li) => li.textContent ?? '')
+    expect(items).toHaveLength(2)
+    expect(items.join(' ')).not.toMatch(/\bthis\b/i)
+    expect(items.some((s) => /leading people/i.test(s))).toBe(true)
+    expect(items.some((s) => /research/i.test(s))).toBe(true)
+  })
+
   it('14.9 shows where you stand and what is going, open, above the choices', () => {
     skipIntro()
     render(<App />)

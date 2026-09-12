@@ -83,7 +83,11 @@ export function RetrospectiveScreen() {
       {retro.fitLearned.length > 0 && (
         <div className="card">
           <div className="card-title">What you found out about yourself</div>
-          <p className="card-desc">{retro.fitLearned.join(' ')}</p>
+          <ul className="fit-readings card-desc">
+            {retro.fitLearned.map((phrase) => (
+              <li key={phrase}>{phrase}</li>
+            ))}
+          </ul>
         </div>
       )}
 

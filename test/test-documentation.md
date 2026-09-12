@@ -268,6 +268,20 @@ is not vagueness about the outcome, it is just confusion.
 | 17.4 | Nothing pending says so plainly | — |
 | 17.5 | The snapshot lists them under what you have going | Replacing the bare count |
 
+## M4h — Fit readings name their subject
+
+"This may suit you. It is not yet clear whether this suits you." — two readings
+about two different things, both saying "this", joined into one line. The
+phrases assumed a card that named a path; they are only ever shown in the
+snapshot, where nothing does.
+
+| # | Case | Expectation |
+|---|---|---|
+| 18.1 | Every fit reading names what it is about | Never a bare "this" |
+| 18.2 | The subject is a plain phrase, not the axis id | "leading people", not "leadership" |
+| 18.3 | Readings render one per line | Not joined into a paragraph that reads as one claim |
+| 18.4 | Confidence bands and tone survive the rewrite | may / seems / clearly; not for a poor fit |
+
 ## M6 — Balance harness
 
 | # | Case | Expectation |

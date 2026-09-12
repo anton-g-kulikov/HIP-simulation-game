@@ -215,9 +215,16 @@ Personal fit is never a number and never a bar. It is a phrase whose confidence 
 | Observations | Phrasing |
 |---:|---|
 | 0–1 | *(nothing shown)* |
-| 2–3 | "This may suit you." / "This may not suit you." |
-| 4–6 | "This seems to suit you." / "This has been consistently hard going." |
-| 7+ | "This clearly plays to your strengths." / "This clearly does not." |
+| 2–3 | "Leading people may suit you." / "… may not suit you." |
+| 4–6 | "Leading people seems to suit you." / "… has been consistently hard going." |
+| 7+ | "Leading people clearly plays to your strengths." / "… clearly does not." |
+
+Every reading **names its subject** — deep technical work, leading people,
+research, building something of your own, explaining and persuading, making
+things run. An earlier version said "this", assuming the phrase would sit on a
+card about a specific path. It never did; readings only appear side by side in
+the snapshot and retrospective, where two "this"es read as one contradictory
+sentence. They render one per line for the same reason.
 
 Observations accumulate only from *acting*, never from reading a card — which is the mechanical statement of §7.8: *the player learns about fit through action*.
 

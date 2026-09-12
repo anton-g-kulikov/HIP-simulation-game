@@ -99,3 +99,41 @@ describe('fit — discovery', () => {
     expect(phrase).not.toMatch(/\d/)
   })
 })
+
+// Test intent: test/test-documentation.md, M4h (18.1, 18.2, 18.4)
+
+describe('fit — readings name their subject', () => {
+  it('18.1 never produces a bare "this"', () => {
+    const fit = rollFit(createRng(1))
+    for (const axis of FIT_AXES) {
+      let obs = noObservations()
+      for (let n = 0; n < 9; n++) {
+        obs = recordObservation(obs, axis, 'notable')
+        const phrase = describeFit(fit, obs, axis)
+        if (phrase) expect(phrase, `${axis} after ${n + 1}`).not.toMatch(/\bthis\b/i)
+      }
+    }
+  })
+
+  it('18.2 names the subject in plain words, not by axis id', () => {
+    const fit = { ...rollFit(createRng(2)), leadership: 0.8 }
+    let obs = noObservations()
+    for (let n = 0; n < 5; n++) obs = recordObservation(obs, 'leadership', 'notable')
+    const phrase = describeFit(fit, obs, 'leadership')!
+    expect(phrase).toMatch(/leading people/i)
+    expect(phrase).not.toMatch(/\bleadership\b/)
+  })
+
+  it('18.4 keeps the confidence bands and the tone', () => {
+    const fit = { ...rollFit(createRng(3)), research: 0.85, founding: 0.15 }
+    let good = noObservations()
+    let poor = noObservations()
+    for (let n = 0; n < 8; n++) {
+      good = recordObservation(good, 'research', 'notable')
+      poor = recordObservation(poor, 'founding', 'notable')
+    }
+    expect(describeFit(fit, good, 'research')).toMatch(/clearly/i)
+    expect(describeFit(fit, poor, 'founding')).toMatch(/clearly/i)
+    expect(describeFit(fit, poor, 'founding')).toMatch(/not/i)
+  })
+})

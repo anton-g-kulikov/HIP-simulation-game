@@ -105,8 +105,14 @@ export function CareerSnapshot() {
           {runwayMonths(finance).toFixed(1)} months of runway.
         </p>
 
+        {/* One reading per line. Joined into a paragraph, two readings about
+            two different things read as a single contradictory claim. */}
         {fit.length > 0 && (
-          <p className="muted snapshot-note">{fit.map((entry) => entry.phrase).join(' ')}</p>
+          <ul className="fit-readings muted">
+            {fit.map((entry) => (
+              <li key={entry.axis}>{entry.phrase}</li>
+            ))}
+          </ul>
         )}
 
         {market && <p className="muted snapshot-note">{market}</p>}
