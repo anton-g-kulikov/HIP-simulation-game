@@ -94,10 +94,17 @@ export function RetrospectiveScreen() {
       {retro.strongestResults.length > 0 && (
         <>
           <h2 className="section">What went unusually well</h2>
+          {/* Same hierarchy as the review screen: the decision leads, the
+              result follows. A headline with only a month on it is the link
+              between choice and consequence gone missing, in the one place
+              the campaign is meant to be read back as a sequence of choices. */}
           {retro.strongestResults.map((outcome) => (
-            <div className="card" key={outcome.id}>
-              <div className="card-title">{outcome.headline}</div>
-              <div className="outcome-source">Month {outcome.sourceTurn}</div>
+            <div className="card highlight" key={outcome.id}>
+              <div className="outcome-from">
+                <span className="outcome-from-when">Month {outcome.sourceTurn}</span>
+                <div className="outcome-from-title">{outcome.sourceTitle}</div>
+              </div>
+              <div className="outcome-headline">{outcome.headline}</div>
             </div>
           ))}
         </>

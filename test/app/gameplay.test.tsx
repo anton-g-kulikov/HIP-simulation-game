@@ -570,6 +570,35 @@ describe('retrospective', () => {
     expect(retro.allocation.reduce((sum, slice) => sum + slice.energy, 0)).toBe(retro.energySpent)
   })
 
+  it('19.1 anchors each highlight to the decision it came from', () => {
+    // Play until at least one strong result exists, then read it back.
+    let final: CampaignState | null = null
+    for (let seed = 20; seed < 60 && !final; seed++) {
+      const candidate = playOut(seed, (state) => {
+        const offer = state.offers.find((o) => !o.pipelineId)
+        return offer ? { [offer.id]: offer.minEnergy } : {}
+      })
+      if (candidate.history.some((r) => r.outcomes.some((o) => o.band === 'strong'))) final = candidate
+    }
+    expect(final, 'no seed produced a strong result').not.toBeNull()
+
+    useStore.setState({ state: final!, screen: 'retrospective' })
+    render(<App />)
+
+    const strong = final!.history.flatMap((r) => r.outcomes).find((o) => o.band === 'strong')!
+    const highlights = [...document.querySelectorAll('.highlight')]
+    expect(highlights.length).toBeGreaterThan(0)
+
+    const card = highlights.find((c) => c.textContent?.includes(strong.headline))!
+    expect(card).toBeTruthy()
+    const from = card.querySelector('.outcome-from')!
+    expect(from.textContent).toContain(strong.sourceTitle)
+    expect(from.textContent).toMatch(new RegExp(`month ${strong.sourceTurn}`, 'i'))
+    // The decision precedes the headline in reading order.
+    const headline = card.querySelector('.outcome-headline')!
+    expect(from.compareDocumentPosition(headline) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
   it('shows no score, grade or rating', () => {
     const final = playOut(13, () => ({}))
     useStore.setState({ state: final, screen: 'retrospective' })

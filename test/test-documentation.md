@@ -282,6 +282,17 @@ snapshot, where nothing does.
 | 18.3 | Readings render one per line | Not joined into a paragraph that reads as one claim |
 | 18.4 | Confidence bands and tone survive the rewrite | may / seems / clearly; not for a poor fit |
 
+## M4i — Retrospective highlights anchor to decisions
+
+"What went unusually well" listed headlines with a month and nothing else —
+the same missing link as the outcome cards, in the place where the campaign is
+meant to be read back as a sequence of choices.
+
+| # | Case | Expectation |
+|---|---|---|
+| 19.1 | Each highlight leads with the decision it came from | Title of the action, month it was taken |
+| 19.2 | The headline follows as what came of it | Not the other way round |
+
 ## M6 — Balance harness
 
 | # | Case | Expectation |

@@ -87,7 +87,9 @@ This screen is the primary defence against the loop feeling inert (Plan §6). It
 
 ### 1.4 Retrospective (after turn 12)
 
-Design doc §13.2's Level 1 list: strongest evidence produced, career capital gained, underused assets, missed near-term opportunities, and the exploration paths now open. Plus, for the prototype specifically: an **energy allocation breakdown** by category across all 12 turns, shown as a simple bar. Players seeing how lopsided their own play was is the fastest route to the insight the game is trying to teach, and it is also the single most useful playtest artifact.
+Design doc §13.2's Level 1 list: strongest evidence produced, career capital gained, underused assets, missed near-term opportunities, and the exploration paths now open.
+
+"What went unusually well" uses the same hierarchy as the review screen: the decision leads (its title, and the month it was taken), the result follows. A headline with only a month on it was the link between choice and consequence gone missing, in the one place the campaign is meant to be read back as a sequence of choices. Plus, for the prototype specifically: an **energy allocation breakdown** by category across all 12 turns, shown as a simple bar. Players seeing how lopsided their own play was is the fastest route to the insight the game is trying to teach, and it is also the single most useful playtest artifact.
 
 No score. No grade. No archetype yet — archetypes are a Level 3 finale feature and assigning one after 12 monthly turns would be false precision.
 
